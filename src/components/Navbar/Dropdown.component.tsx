@@ -66,12 +66,12 @@ function MenuButtonIcon({
  */
 function MenuLink({ children, href, onClick, ...rest }: MenuLinkProps): JSX.Element {
 	return (
-		<Link href={href} passHref>
+        <Link href={href} passHref legacyBehavior>
 			<StyledMenuItem onClick={(...args): void => onClick(...args)} {...rest}>
 				{children}
 			</StyledMenuItem>
 		</Link>
-	);
+    );
 }
 
 export function Dropdown({ children, items, position = 'top-left' }: StandardProps): JSX.Element {
