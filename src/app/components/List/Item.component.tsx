@@ -39,7 +39,8 @@ export function Item({
 								style={{
 									backgroundColor:
 										iconColor !== undefined ? iconColor : undefined,
-								}}>
+								}}
+							>
 								<Icon className="w-6 h-6 text-white" icon={icon} />
 							</div>
 						) : (
@@ -64,7 +65,8 @@ export function Item({
 										<Action
 											aria-label={action.label}
 											key={index}
-											onClick={action.onClick}>
+											onClick={action.onClick}
+										>
 											<span className="sr-only">{action.label}</span>
 											<Icon className="mt-1" icon={action.icon} />
 										</Action>
@@ -79,7 +81,8 @@ export function Item({
 												key={index}
 												onClick={action.onClick}
 												rel="noopener noreferrer"
-												target="_blank">
+												target="_blank"
+											>
 												<span className="sr-only">{action.label}</span>
 												<Icon className="mt-1" icon={action.icon} />
 											</Action>
@@ -91,7 +94,8 @@ export function Item({
 												as="a"
 												aria-label={action.label}
 												key={index}
-												onClick={action.onClick}>
+												onClick={action.onClick}
+											>
 												<span className="sr-only">{action.label}</span>
 												<Icon className="mt-1" icon={action.icon} />
 											</Action>

@@ -1,4 +1,4 @@
-import  matter from "gray-matter";
+import matter from 'gray-matter';
 import { format } from 'date-fns';
 import { join } from 'path';
 import { readdirSync, readFileSync } from 'fs';
