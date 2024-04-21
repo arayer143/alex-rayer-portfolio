@@ -10,7 +10,7 @@
 		{ "source": "/github", "destination": "https://github.com/arayer143" },
 		{ "source": "/linkedin", "destination": "https://www.linkedin.com/in/alex-rayer" },
 		{ "source": "/portfolio", "destination": "/projects" },
-		{ "source": "/twitter", "destination": "https://twitter.com/Alex_Rayer_" },
+		{ "source": "/twitter", "destination": "https://twitter.com/Alex_Rayer_" }
 	
 	]
 }
