@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
-import { Pill } from '~/components';
+import { Pill } from 'src/app/components';
 
-import type { FrontMatter } from '~/types';
+import type { FrontMatter } from 'src/app/types';
 
 interface LatestProps {
 	frontmatter: FrontMatter;

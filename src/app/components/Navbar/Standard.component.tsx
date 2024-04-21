@@ -1,7 +1,7 @@
 import { Disclosure } from '@headlessui/react';
 
-import { Button, Navbar } from '~/components';
-import { useNavigation } from '~/lib';
+import { Button, Navbar } from 'src/app/components';
+import { useNavigation } from 'src/app/lib';
 
 export function Standard(): JSX.Element {
 	const { menu, settings } = useNavigation();

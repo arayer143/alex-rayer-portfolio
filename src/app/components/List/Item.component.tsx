@@ -3,11 +3,11 @@ import Link from 'next/link';
 import { Icon } from '@iconify/react';
 
 import { Action } from './Action.component';
-import { ListActionType } from '~/types';
+import { ListActionType } from 'src/app/types';
 
 import type { ReactNode } from 'react';
 
-import type { ListAction, WithChildren } from '~/types';
+import type { ListAction, WithChildren } from 'src/app/types';
 
 interface ItemProps extends WithChildren {
 	actions?: Array<ListAction>;

@@ -1,7 +1,7 @@
 import { Icon } from '@iconify/react';
-import { Layout } from '~/layouts';
+import { Layout } from 'src/app/layouts';
 import { Button } from '..';
-import { NavigationItemType } from '~/types';
+import { NavigationItemType } from 'src/app/types';
 
 interface ErrorProps {
 	routeBlog?: boolean;

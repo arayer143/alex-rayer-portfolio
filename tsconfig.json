@@ -5,6 +5,7 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "incremental": true,
+    "skipLibCheck": true,
     "isolatedModules": true,
     "jsx": "preserve",
     "lib": [
@@ -21,7 +22,7 @@
       ]
     },
     "resolveJsonModule": true,
-    "skipLibCheck": true,
+   
     "strict": false,
     "target": "ESNext",
     "plugins": [

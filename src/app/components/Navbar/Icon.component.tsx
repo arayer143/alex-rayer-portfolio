@@ -1,7 +1,7 @@
 import clsx from 'clsx';
 import { Icon as IconifyIcon } from '@iconify/react';
 
-import type { WithProps } from '~/types';
+import type { WithProps } from 'src/app/types';
 
 interface IconProps extends WithProps<typeof IconifyIcon> {}
 

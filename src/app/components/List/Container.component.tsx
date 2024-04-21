@@ -1,4 +1,4 @@
-import type { WithChildren } from '~/types';
+import type { WithChildren } from 'src/app/types';
 
 interface ContainerProps extends WithChildren {}
 

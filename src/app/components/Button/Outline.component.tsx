@@ -4,7 +4,7 @@ import { Icon } from '@iconify/react';
 
 import type { AnchorHTMLAttributes } from 'react';
 
-import type { WithClassName } from '~/types';
+import type { WithClassName } from 'src/app/types';
 
 interface OutlineProps extends AnchorHTMLAttributes<HTMLAnchorElement>, WithClassName {
 	external?: boolean;
