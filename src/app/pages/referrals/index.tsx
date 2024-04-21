@@ -7,21 +7,21 @@ import { useMedia } from 'react-use';
 import { useMemo } from 'react';
 import { useTheme } from 'next-themes';
 
-import { colors } from '~/lib';
-import { Layout } from '~/layouts';
-import { Animate, List, Pill } from '~/components';
-import { ListAction, ListActionType, Theme } from '~/types';
+import { colors } from 'src/app/lib';
+import { Layout } from 'src/app/layouts';
+import { Animate, List, Pill } from 'src/app/components';
+import { ListAction, ListActionType, Theme } from 'src/app/types';
 
 import type { GetStaticProps } from 'next';
 
-import type { Referrals } from '~/types';
+import type { Referrals } from 'src/app/types';
 
 interface ReferralsProps {
 	referrals?: Referrals;
 }
 
 export const getStaticProps: GetStaticProps<ReferralsProps> = async () => {
-	const { default: rawReferrals } = await import('~/data/referrals.json');
+	const { default: rawReferrals } = await import('src/app/data/referrals.json');
 
 	const referrals = (rawReferrals as Referrals).sort((a, b) => {
 		const nameA = a.name.toUpperCase();
