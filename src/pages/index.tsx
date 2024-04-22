@@ -31,9 +31,16 @@ const ACTIONS: Array<NavigationItem> = [
 	{
 		type: NavigationItemType.LINK,
 		external: true,
-		href: 'https://github.com/nurodev',
+		href: 'https://github.com/arayer143',
 		icon: <Icon className="mr-3" icon="feather:github" />,
 		text: 'GitHub',
+	},
+	{
+		type: NavigationItemType.LINK,
+		external: true,
+		href: 'https://www.linkedin.com/in/alex-rayer/',
+		icon: <Icon className="mr-3" icon="feather:linkedin" />,
+		text: 'LinkedIn',
 	},
 ];
 
