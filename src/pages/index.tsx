@@ -8,6 +8,14 @@ import { Layout } from '~/layouts';
 import type { EventProps } from '~/components/Event.component';
 import type { NavigationItem } from '~/types';
 
+
+import React from 'react';
+
+
+
+
+
+
 const Event = dynamic<EventProps>(
 	() => import('~/components/Event.component').then(({ Event }) => Event),
 	{
@@ -37,11 +45,19 @@ const ACTIONS: Array<NavigationItem> = [
 		icon: <Icon className="mr-3" icon="feather:linkedin" />,
 		text: 'LinkedIn',
 	},
+	{
+		type: NavigationItemType.LINK,
+
+		external: false,
+		href: '../src/utils/Resume.pdf',
+		icon: <Icon className="mr-3" icon="feather:paperclip" />,
+		text: 'Resume',
+	},
 ];
 
 export default function HomePage(): JSX.Element {
 	const today = new Date();
-	const birthday = new Date('1997-08-09');
+	const birthday = new Date('2022-04-22');
 	const isBirthday =
 		today.getDate() === birthday.getDate() && today.getMonth() === birthday.getMonth();
 
@@ -58,10 +74,10 @@ export default function HomePage(): JSX.Element {
 							opacity: [0, 1],
 							scale: [0.75, 1],
 						}}
-						className="text-gray-500 dark:text-white text-5xl sm:text-6xl md:text-6xl lg:text-8xl tracking-tight font-extrabold">
-						Hey <span className="inline-block origin-70 hover:(animate-wave)">👋</span>{' '}
-						I am Alex Rayer, <br className="hidden sm:block" />a{' '}
-						<Pill.Standard className="mt-4">developer</Pill.Standard>
+						className="text-gray-500 dark:text-white text-5xl sm:text-6xl md:text-6xl lg:text-6xl tracking-tight font-extrabold">
+						Hello, <span className="inline-block origin-70"></span>{' '}
+						I am Alex Rayer, a  
+						<Pill.Standard className="mt-4">Web Developer</Pill.Standard>
 					</Animate>
 
 					<Animate
@@ -104,4 +120,17 @@ export default function HomePage(): JSX.Element {
 			</div>
 		</Layout.Default>
 	);
+
+
+
+
+
+
+	
+
+
+
+
 }
+
+

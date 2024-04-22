@@ -110,13 +110,7 @@ export function useNavigation(): {
 			{
 				type: NavigationItemType.DIVIDER,
 			},
-			{
-				type: NavigationItemType.ACTION,
-				icon: 'feather:monitor',
-				endIcon: theme === Theme.SYSTEM ? 'feather:check-circle' : undefined,
-				text: 'System Theme',
-				onClick: () => setTheme(Theme.SYSTEM),
-			},
+	
 			{
 				type: NavigationItemType.ACTION,
 				icon: 'feather:sun',
