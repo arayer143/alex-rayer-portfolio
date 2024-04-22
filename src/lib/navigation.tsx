@@ -33,26 +33,21 @@ const staticMenuItems: Array<Array<NavigationItem>> = [
 			text: 'Timeline',
 			href: '/timeline',
 		},
-		{
-			type: NavigationItemType.LINK,
-			icon: 'feather:link',
-			text: 'Referrals',
-			href: '/referrals',
-		},
+
 	],
 	[
 		{
 			type: NavigationItemType.LINK,
-			icon: 'feather:twitter',
-			text: 'Twitter',
-			href: 'https://twitter.com/nurodev',
+			icon: 'feather:linkedin',
+			text: 'Linkedin',
+			href: 'https://www.linkedin.com/in/alex-rayer/',
 			external: true,
 		},
 		{
 			type: NavigationItemType.LINK,
 			icon: 'feather:github',
 			text: 'GitHub',
-			href: 'https://github.com/nurodev',
+			href: 'https://github.com/arayer143',
 			external: true,
 		},
 	],
