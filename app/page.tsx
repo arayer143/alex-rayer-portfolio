@@ -1,5 +1,7 @@
 
 import HeroSection from "@/components/Hero/hero-section";
+import AboutMe from "@/components/Home Page/about-me";
+import PortfolioSection from "@/components/Home Page/portfolio-section";
 import Navbar from "@/components/Navbar/navbar";
 
 
@@ -16,6 +18,8 @@ export default function Home() {
 
         <section className="w-full bg-gray-100 dark:bg-gray-800">
           <HeroSection />
+          <AboutMe />
+          <PortfolioSection />
   
         </section>
 
