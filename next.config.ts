@@ -4,7 +4,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/contact.php',
+        source: '/api/contact',
         destination: 'http://localhost:8000/contact.php',
       },
     ]
