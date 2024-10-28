@@ -26,7 +26,7 @@ export default function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const response = await fetch('/contact.php', {
+      const response = await fetch('/api/contact', {  // Changed from '/contact.php' to '/api/contact'
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
