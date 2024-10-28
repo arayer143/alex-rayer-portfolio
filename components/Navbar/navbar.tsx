@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
 import { Moon, Sun, Menu, X } from 'lucide-react'
@@ -8,7 +8,12 @@ import { Button } from "@/components/ui/button"
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const toggleMenu = () => setIsOpen(!isOpen)
 
@@ -19,13 +24,19 @@ const Navbar = () => {
     { name: 'Contact', href: '/contact' },
   ]
 
+  if (!mounted) {
+    return null
+  }
+
+  const isDark = theme === 'dark' || resolvedTheme === 'dark'
+
   return (
-    <nav className="bg-white dark:bg-gray-900 shadow-md">
+    <nav className={`${isDark ? 'dark bg-gray-900' : 'bg-white'} shadow-md`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <span className="text-2xl font-bold text-gray-800 dark:text-white">Logo</span>
+              <span className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>Logo</span>
             </Link>
           </div>
           <div className="hidden md:block">
@@ -34,7 +45,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white px-3 py-2 rounded-md text-sm font-medium"
+                  className={`${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} px-3 py-2 rounded-md text-sm font-medium`}
                 >
                   {item.name}
                 </Link>
@@ -45,10 +56,10 @@ const Navbar = () => {
             <Button
               variant="ghost"
               size="icon"
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className="ml-4"
             >
-              {theme === 'dark' ? (
+              {isDark ? (
                 <Sun className="h-5 w-5 text-yellow-500" />
               ) : (
                 <Moon className="h-5 w-5 text-gray-700" />
@@ -75,7 +86,7 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 href={item.href}
-                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white block px-3 py-2 rounded-md text-base font-medium"
+                className={`${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} block px-3 py-2 rounded-md text-base font-medium`}
                 onClick={toggleMenu}
               >
                 {item.name}

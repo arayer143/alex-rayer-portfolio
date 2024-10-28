@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Image from 'next/image'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -8,6 +8,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { motion, useAnimation, useInView } from "framer-motion"
 import { FaReact, FaNodeJs, FaAws, FaDocker, FaGithub } from 'react-icons/fa'
 import { SiNextdotjs, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiTailwindcss, SiExpress, SiMongodb, SiPostgresql, SiGraphql } from 'react-icons/si'
+import { useTheme } from 'next-themes'
 
 const technologies = [
   { name: "React", icon: FaReact, color: "text-blue-500 dark:text-blue-400" },
@@ -67,36 +68,49 @@ const TechScroll = () => {
 }
 
 export default function AboutMe() {
+  const { theme, resolvedTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  if (!mounted) {
+    return null
+  }
+
+  const isDark = theme === 'dark' || resolvedTheme === 'dark'
+
   return (
-    <section className="py-16 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900">
+    <section className={`py-16 ${isDark ? 'bg-gradient-to-br from-gray-800 to-gray-900' : 'bg-gradient-to-br from-gray-100 to-gray-200'}`}>
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center mb-8 text-gray-800 dark:text-gray-100">About Me</h2>
+        <h2 className={`text-4xl font-bold text-center mb-8 ${isDark ? 'text-gray-100' : 'text-gray-800'}`}>About Me</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <Card className="md:col-span-1 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+          <Card className={`md:col-span-1 ${isDark ? 'bg-gray-800/80' : 'bg-white/80'} backdrop-blur-sm`}>
             <CardHeader>
               <Avatar className="w-32 h-32 mx-auto">
-                <AvatarImage src=" /alex-rayer.png" alt="Alex Rayer" />
+                <AvatarImage src="/alex-rayer.png" alt="Alex Rayer" />
                 <AvatarFallback>AR</AvatarFallback>
               </Avatar>
             </CardHeader>
             <CardContent className="text-center">
-              <CardTitle className="text-2xl text-gray-800 dark:text-gray-100">Alex Rayer</CardTitle>
-              <CardDescription className="text-gray-600 dark:text-gray-400">Web Developer & Designer</CardDescription>
+              <CardTitle className={`text-2xl ${isDark ? 'text-gray-100' : 'text-gray-800'}`}>Alex Rayer</CardTitle>
+              <CardDescription className={isDark ? 'text-gray-400' : 'text-gray-600'}>Web Developer & Designer</CardDescription>
             </CardContent>
           </Card>
           <div className="md:col-span-2">
             <Tabs defaultValue="who" className="w-full">
-              <TabsList className="grid w-full grid-cols-2 bg-gray-200/80 dark:bg-gray-700/80 backdrop-blur-sm">
-                <TabsTrigger value="who" className="data-[state=active]:bg-white data-[state=active]:text-gray-800 dark:data-[state=active]:bg-gray-600 dark:data-[state=active]:text-gray-100">Who I Am</TabsTrigger>
-                <TabsTrigger value="what" className="data-[state=active]:bg-white data-[state=active]:text-gray-800 dark:data-[state=active]:bg-gray-600 dark:data-[state=active]:text-gray-100">What I Do</TabsTrigger>
+              <TabsList className={`grid w-full grid-cols-2 ${isDark ? 'bg-gray-700/80' : 'bg-gray-200/80'} backdrop-blur-sm`}>
+                <TabsTrigger value="who" className={`${isDark ? 'data-[state=active]:bg-gray-600 data-[state=active]:text-gray-100' : 'data-[state=active]:bg-white data-[state=active]:text-gray-800'}`}>Who I Am</TabsTrigger>
+                <TabsTrigger value="what" className={`${isDark ? 'data-[state=active]:bg-gray-600 data-[state=active]:text-gray-100' : 'data-[state=active]:bg-white data-[state=active]:text-gray-800'}`}>What I Do</TabsTrigger>
               </TabsList>
               <TabsContent value="who">
-                <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                <Card className={`${isDark ? 'bg-gray-800/80' : 'bg-white/80'} backdrop-blur-sm`}>
                   <CardHeader>
-                    <CardTitle className="text-gray-800 dark:text-gray-100">My Background</CardTitle>
+                    <CardTitle className={isDark ? 'text-gray-100' : 'text-gray-800'}>My Background</CardTitle>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 dark:text-gray-300">
+                    <p className={isDark ? 'text-gray-300' : 'text-gray-600'}>
                       I'm a passionate web developer with a keen eye for creating elegant, 
                       efficient, and user-friendly solutions. With a strong foundation in both front-end 
                       and back-end technologies, I strive to build applications that not only meet but 
@@ -107,13 +121,13 @@ export default function AboutMe() {
                 </Card>
               </TabsContent>
               <TabsContent value="what">
-                <Card className="bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+                <Card className={`${isDark ? 'bg-gray-800/80' : 'bg-white/80'} backdrop-blur-sm`}>
                   <CardHeader>
-                    <CardTitle className="text-gray-800 dark:text-gray-100">My Expertise</CardTitle>
-                    <CardDescription className="text-gray-600 dark:text-gray-400">Crafting Digital Experiences</CardDescription>
+                    <CardTitle className={isDark ? 'text-gray-100' : 'text-gray-800'}>My Expertise</CardTitle>
+                    <CardDescription className={isDark ? 'text-gray-400' : 'text-gray-600'}>Crafting Digital Experiences</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">
+                    <p className={`${isDark ? 'text-gray-300' : 'text-gray-600'} mb-4`}>
                       I specialize in crafting responsive web applications, optimizing performance, 
                       and implementing robust backend systems. My approach combines creativity with 
                       technical expertise to deliver outstanding digital experiences.
@@ -124,9 +138,9 @@ export default function AboutMe() {
             </Tabs>
           </div>
         </div>
-        <Card className="mt-8 bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm">
+        <Card className={`mt-8 ${isDark ? 'bg-gray-800/80' : 'bg-white/80'} backdrop-blur-sm`}>
           <CardHeader>
-            <CardTitle className="text-gray-800 dark:text-gray-100">Technologies I Work With</CardTitle>
+            <CardTitle className={isDark ? 'text-gray-100' : 'text-gray-800'}>Technologies I Work With</CardTitle>
           </CardHeader>
           <CardContent>
             <TechScroll />
