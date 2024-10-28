@@ -72,8 +72,8 @@ export default function PortfolioSection() {
                     <Image
                       src={project.image}
                       alt={`${project.title} project thumbnail`}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      style={{ objectFit: "cover" }}
                     />
                   </motion.div>
                 </CardHeader>
