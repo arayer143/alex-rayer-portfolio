@@ -26,7 +26,7 @@ export default function ContactForm() {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const response = await fetch('/public/contact.php', {
+      const response = await fetch('/contact.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
