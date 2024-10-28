@@ -1,8 +1,13 @@
 <?php
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+use Dotenv\Dotenv;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+// Load environment variables
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->load();
 
 header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
@@ -34,14 +39,14 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = 'alexrayer7@gmail.com';
-    $mail->Password   = 'mfen bneq rbyx zlkq';
+    $mail->Username   = $_ENV['SMTP_USERNAME'];
+    $mail->Password   = $_ENV['SMTP_PASSWORD'];
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
 
     // Recipients
     $mail->setFrom($email, $name);
-    $mail->addAddress('alexrayer7@gmail.com');
+    $mail->addAddress($_ENV['SMTP_USERNAME']);
     $mail->addReplyTo($email, $name);
 
     // Content
