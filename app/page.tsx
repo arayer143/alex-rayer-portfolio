@@ -1,4 +1,5 @@
 
+import ContactForm from "@/components/Contact/contactform";
 import HeroSection from "@/components/Hero/hero-section";
 import AboutMe from "@/components/Home Page/about-me";
 import PortfolioSection from "@/components/Home Page/portfolio-section";
@@ -20,14 +21,15 @@ export default function Home() {
           <HeroSection />
           <AboutMe />
           <PortfolioSection />
-  
+          <ContactForm />
+       
         </section>
 
 
      
       <section className="w-full">
     
-
+    
       </section>
 
 

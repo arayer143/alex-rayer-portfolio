@@ -30,7 +30,7 @@ const projects = [
   {
     title: "RayDunn",
     description: "A portfolio website showcasing web development and design services.",
-    image: "/placeholder.svg?height=200&width=300",
+    image: "/PNG Transparent Logo.png",
     link: "/projects/raydunn"
   }
 ]

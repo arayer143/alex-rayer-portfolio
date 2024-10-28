@@ -1,10 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  webpack: (config) => {
-    config.externals = [...config.externals, { canvas: 'canvas' }];
-    return config;
+  async rewrites() {
+    return [
+      {
+        source: '/contact.php',
+        destination: 'http://localhost:8000/contact.php',
+      },
+    ]
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig
