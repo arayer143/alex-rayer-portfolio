@@ -34,8 +34,9 @@ export function CommentSection({ postId }: { postId: string }) {
         throw new Error('Failed to fetch comments')
       }
       const data = await response.json()
-      setComments(data)
+      setComments(Array.isArray(data) ? data : [])
     } catch (error) {
+      console.error('Error fetching comments:', error)
       toast({
         title: "Error",
         description: "Failed to load comments. Please try again later.",
@@ -60,13 +61,18 @@ export function CommentSection({ postId }: { postId: string }) {
         throw new Error('Failed to add comment')
       }
       const addedComment = await response.json()
-      setComments(prevComments => [...prevComments, addedComment])
-      setNewComment({ author: '', text: '' })
-      toast({
-        title: "Success",
-        description: "Your comment has been added.",
-      })
+      if (addedComment && addedComment._id) {
+        setComments(prevComments => [addedComment, ...prevComments])
+        setNewComment({ author: '', text: '' })
+        toast({
+          title: "Success",
+          description: "Your comment has been added.",
+        })
+      } else {
+        throw new Error('Invalid comment data received')
+      }
     } catch (error) {
+      console.error('Error adding comment:', error)
       toast({
         title: "Error",
         description: "Failed to add comment. Please try again.",

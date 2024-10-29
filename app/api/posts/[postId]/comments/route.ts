@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
+import { ObjectId } from 'mongodb'
 
 export async function GET(request: Request, { params }: { params: { postId: string } }) {
   const { postId } = params
   const client = await clientPromise
   const db = client.db("blogcomments")
-  const comments = await db.collection('comments').find({ postId }).toArray()
+  const comments = await db.collection('comments').find({ postId }).sort({ createdAt: -1 }).toArray()
   return NextResponse.json(comments)
 }
 
@@ -14,11 +15,16 @@ export async function POST(request: Request, { params }: { params: { postId: str
   const { author, text } = await request.json()
   const client = await clientPromise
   const db = client.db("blogcomments")
-  const result = await db.collection('comments').insertOne({
+  const newComment = {
     postId,
     author,
     text,
     createdAt: new Date()
-  })
-  return NextResponse.json(result)
+  }
+  const result = await db.collection('comments').insertOne(newComment)
+  const insertedComment = {
+    ...newComment,
+    _id: result.insertedId.toString()
+  }
+  return NextResponse.json(insertedComment)
 }

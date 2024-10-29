@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  images: {
-    domains: ['localhost', 'placeholder.svg'],
+  reactStrictMode: true,
+  env: {
+    MONGODB_URI: process.env.MONGODB_URI,
   },
 }
 

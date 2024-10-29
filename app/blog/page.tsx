@@ -68,7 +68,7 @@ export default function BlogIndexPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-        <Navbar />
+      <Navbar />
       <h1 className="text-4xl font-bold mb-8 text-center">Blog Posts</h1>
       <div className="flex justify-between items-center mb-6">
         <Tabs defaultValue="All" className="w-[400px]">
