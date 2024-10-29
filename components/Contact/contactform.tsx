@@ -30,7 +30,7 @@ export default function ContactForm() {
       if (response.ok && result.success) {
         toast({
           title: "Message sent!",
-          description: "Thank you for your message. We'll get back to you soon.",
+          description: "Thank you for your message. I'll get back to you soon.",
         })
         setFormData({ name: '', email: '', message: '' })
       } else {
@@ -52,36 +52,40 @@ export default function ContactForm() {
       <Card className="w-full md:w-1/3">
         <CardHeader>
           <CardTitle>Contact Information</CardTitle>
-          <CardDescription>Get in touch with us</CardDescription>
+          <CardDescription>Get in touch with me</CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
           <div className="flex items-center space-x-3">
             <Mail className="h-5 w-5 text-muted-foreground" />
-            <span>contact@example.com</span>
+            <Button variant="link" className="p-0 h-auto" asChild>
+              <a href="mailto:alexrayer7@gmail.com">alexrayer7@gmail.com</a>
+            </Button>
           </div>
           <div className="flex items-center space-x-3">
             <Phone className="h-5 w-5 text-muted-foreground" />
-            <span>+1 (555) 123-4567</span>
+            <Button variant="link" className="p-0 h-auto" asChild>
+              <a href="tel:+9858692356">+1 (985) 869-2356</a>
+            </Button>
           </div>
           <div className="flex items-center space-x-3">
             <MapPin className="h-5 w-5 text-muted-foreground" />
-            <span>123 Main St, City, Country</span>
+            <span>New Orleans, LA</span>
           </div>
           <div className="flex space-x-4 pt-4">
             <Button variant="outline" size="icon" asChild>
-              <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/arayer143" target="_blank" rel="noopener noreferrer">
                 <Github className="h-4 w-4" />
                 <span className="sr-only">GitHub</span>
               </a>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://linkedin.com/in/alex-rayer" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="h-4 w-4" />
                 <span className="sr-only">LinkedIn</span>
               </a>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+              <a href="https://x.com/Alex_Rayer_" target="_blank" rel="noopener noreferrer">
                 <Twitter className="h-4 w-4" />
                 <span className="sr-only">Twitter</span>
               </a>
@@ -92,8 +96,8 @@ export default function ContactForm() {
 
       <Card className="w-full md:w-2/3">
         <CardHeader>
-          <CardTitle>Send Us a Message</CardTitle>
-          <CardDescription>We'd love to hear from you!</CardDescription>
+          <CardTitle>Send Me a Message</CardTitle>
+          <CardDescription>I'd love to hear from you!</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
