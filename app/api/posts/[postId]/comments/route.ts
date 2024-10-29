@@ -1,8 +1,11 @@
-import { NextResponse } from 'next/server'
+import { NextRequest, NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
 import { ObjectId } from 'mongodb'
 
-export async function GET(request: Request, { params }: { params: { postId: string } }) {
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { postId: string } }
+) {
   const { postId } = params
   const client = await clientPromise
   const db = client.db("blogcomments")
@@ -10,7 +13,10 @@ export async function GET(request: Request, { params }: { params: { postId: stri
   return NextResponse.json(comments)
 }
 
-export async function POST(request: Request, { params }: { params: { postId: string } }) {
+export async function POST(
+  request: NextRequest,
+  { params }: { params: { postId: string } }
+) {
   const { postId } = params
   const { author, text } = await request.json()
   const client = await clientPromise
