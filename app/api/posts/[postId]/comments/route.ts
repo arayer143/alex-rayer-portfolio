@@ -1,14 +1,12 @@
 import { NextRequest, NextResponse } from 'next/server'
 import clientPromise from '@/lib/mongodb'
-
-
-type RouteParams = { params: { postId: string } }
+import { ObjectId } from 'mongodb'
 
 export async function GET(
   request: NextRequest,
-  { params }: RouteParams
+  context: { params: { postId: string } }
 ) {
-  const { postId } = params
+  const { postId } = context.params
   const client = await clientPromise
   const db = client.db("blogcomments")
   const comments = await db.collection('comments').find({ postId }).sort({ createdAt: -1 }).toArray()
@@ -17,9 +15,9 @@ export async function GET(
 
 export async function POST(
   request: NextRequest,
-  { params }: RouteParams
+  context: { params: { postId: string } }
 ) {
-  const { postId } = params
+  const { postId } = context.params
   const { author, text } = await request.json()
   const client = await clientPromise
   const db = client.db("blogcomments")
