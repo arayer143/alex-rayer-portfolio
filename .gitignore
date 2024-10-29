@@ -36,11 +36,5 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# PHP
+# vendor
 /vendor
-
-# PHPMailer logs
-/logs
-
-# Composer
-composer.phar
