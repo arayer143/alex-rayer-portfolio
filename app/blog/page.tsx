@@ -7,12 +7,10 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
-import { Separator } from "@/components/ui/separator"
-import { Switch } from "@/components/ui/switch"
-import { Label } from "@/components/ui/label"
-import { CommentSection } from '@/components/comments-section'
 import { CalendarIcon, TagIcon } from 'lucide-react'
 import Navbar from '@/components/Navbar/navbar'
+import { CommentToggle } from '@/components/comment-toggle'
+import { CommentSection } from '@/components/comments-section'
 
 interface BlogPost {
   title: string
@@ -20,6 +18,7 @@ interface BlogPost {
   description: string
   category: string
   date: string
+  content?: string
 }
 
 const blogPosts: BlogPost[] = [
@@ -50,12 +49,19 @@ const blogPosts: BlogPost[] = [
     description: "Dive deep into TypeScript's advanced features to write more robust and maintainable code.",
     category: "TypeScript",
     date: "2023-06-30"
+  },
+  {
+    title: "Building a REST API Comment Section with Next.js and MongoDB",
+    slug: "rest-api-comment-section",
+    description: "Learn how to create a fully functional comment section using Next.js API routes and MongoDB, with a step-by-step guide on installation and implementation.",
+    category: "Web Development",
+    date: "2023-07-05"
   }
 ]
 
 export default function BlogIndexPage() {
   const [selectedCategory, setSelectedCategory] = useState<string>("All")
-  const [showComments, setShowComments] = useState(false)
+  const [activeComments, setActiveComments] = useState<string | null>(null)
   const { theme } = useTheme()
 
   const categories = ["All", ...Array.from(new Set(blogPosts.map(post => post.category)))]
@@ -66,13 +72,17 @@ export default function BlogIndexPage() {
 
   const buttonClass = theme === 'dark' ? 'bg-purple-600 hover:bg-purple-700' : 'bg-blue-600 hover:bg-blue-700'
 
+  const toggleComments = (slug: string) => {
+    setActiveComments(activeComments === slug ? null : slug)
+  }
+
   return (
     <div className="container mx-auto px-4 py-8">
       <Navbar />
       <h1 className="text-4xl font-bold mb-8 text-center">Blog Posts</h1>
-      <div className="flex justify-between items-center mb-6">
-        <Tabs defaultValue="All" className="w-[400px]">
-          <TabsList>
+      <div className="mb-6">
+        <Tabs defaultValue="All" className="w-full">
+          <TabsList className="grid grid-cols-3 sm:flex">
             {categories.map(category => (
               <TabsTrigger 
                 key={category} 
@@ -84,50 +94,52 @@ export default function BlogIndexPage() {
             ))}
           </TabsList>
         </Tabs>
-        <div className="flex items-center space-x-2">
-          <Switch
-            id="show-comments"
-            checked={showComments}
-            onCheckedChange={setShowComments}
-          />
-          <Label htmlFor="show-comments">Show Comments</Label>
-        </div>
       </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div className="grid gap-6 sm:grid-cols-2">
         {filteredPosts.map((post) => (
-          <Card key={post.slug} className="flex flex-col">
-            <CardHeader>
-              <CardTitle className="text-xl">
-                <Link href={`/blog/${post.slug}`} className="hover:underline">
-                  {post.title}
-                </Link>
-              </CardTitle>
-              <CardDescription className="flex items-center space-x-2">
-                <CalendarIcon className="w-4 h-4" />
-                <span>{post.date}</span>
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="flex-grow">
-              <p className="mb-4">{post.description}</p>
-              <Badge variant="secondary" className="mb-2">
-                <TagIcon className="w-4 h-4 mr-1" />
-                {post.category}
-              </Badge>
-            </CardContent>
-            <CardFooter className="flex justify-between items-center">
-              <Button asChild className={buttonClass}>
-                <Link href={`/blog/${post.slug}`}>Read More</Link>
-              </Button>
-            </CardFooter>
-            {showComments && (
-              <>
-                <Separator className="my-4" />
+          <div key={post.slug} className="flex flex-col">
+            <Card className="flex-grow flex flex-col">
+              <CardHeader>
+                <CardTitle className="text-xl">
+                  <Link href={`/blog/${post.slug}`} className="hover:underline">
+                    {post.title}
+                  </Link>
+                </CardTitle>
+                <CardDescription className="flex items-center space-x-2">
+                  <CalendarIcon className="w-4 h-4" />
+                  <span>{post.date}</span>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex-grow flex flex-col">
+                <p className="mb-4">{post.description}</p>
+                <div className="mt-auto flex flex-col space-y-4">
+                  <div className="flex justify-between items-center">
+                    <Badge variant="secondary" className="self-start">
+                      <TagIcon className="w-4 h-4 mr-1" />
+                      {post.category}
+                    </Badge>
+                    <Button asChild className={buttonClass}>
+                      <Link href={`/blog/${post.slug}`}>Read More</Link>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+              <CardFooter className="w-full flex flex-col items-start">
+                <CommentToggle 
+                  postId={post.slug} 
+                  isActive={activeComments === post.slug}
+                  onToggle={() => toggleComments(post.slug)}
+                />
+              </CardFooter>
+            </Card>
+            {activeComments === post.slug && (
+              <Card className="mt-4 w-full">
                 <CardContent>
                   <CommentSection postId={post.slug} />
                 </CardContent>
-              </>
+              </Card>
             )}
-          </Card>
+          </div>
         ))}
       </div>
     </div>

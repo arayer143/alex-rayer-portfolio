@@ -2,6 +2,7 @@ import './globals.css'
 import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/themeprovider'
 import type { Metadata } from 'next'
+import 'prismjs/themes/prism-tomorrow.css'
 
 const inter = Inter({ subsets: ['latin'] })
 
