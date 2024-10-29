@@ -45,8 +45,6 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
     return <div>Loading...</div>
   }
 
-  const buttonClass = theme === 'dark' ? 'bg-purple-600 hover:bg-purple-700' : 'bg-blue-600 hover:bg-blue-700'
-
   const toggleComments = () => {
     setShowComments(!showComments)
   }
@@ -64,7 +62,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
       if (part.startsWith('```')) {
         const [, language, code] = part.match(/```(\w+)\n([\s\S]*?)\n```/) || []
         return (
-          <div key={index} className="relative mb-4">
+          <div key={index} className="relative mb-6">
             <pre className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto">
               <code className={`language-${language}`}>{code.trim()}</code>
             </pre>
@@ -79,40 +77,42 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
           </div>
         )
       } else if (part.startsWith('\n- ')) {
+        const items = part.split('\n').filter(item => item.trim() !== '' && item !== '- ')
+        if (items.length === 0) return null
         return (
-          <ul key={index} className="list-disc list-inside mb-4 pl-4">
-            {part.split('\n').map((item, i) => (
-              <li key={i} className="mb-2">{item.slice(2)}</li>
+          <ul key={index} className="list-disc list-inside mb-6 pl-4 space-y-2">
+            {items.map((item, i) => (
+              <li key={i} className="text-gray-700 dark:text-gray-300">{item.slice(2)}</li>
             ))}
           </ul>
         )
       } else {
         return (
-          <p key={index} className="mb-4">
+          <p key={index} className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">
             {part}
           </p>
         )
       }
-    })
+    }).filter(Boolean)
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 max-w-4xl">
       <Navbar />
-      <Link href="/blog" className="flex items-center mb-4 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100">
+      <Link href="/blog" className="flex items-center mb-8 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors">
         <ArrowLeftIcon className="w-4 h-4 mr-2" />
         Back to all posts
       </Link>
-      <Card className="mb-8">
-        <CardHeader>
-          <CardTitle className="text-3xl font-bold">{post.title}</CardTitle>
-          <CardDescription className="flex items-center space-x-2">
+      <Card className="mb-8 shadow-lg">
+        <CardHeader className="space-y-4">
+          <CardTitle className="text-4xl font-bold text-gray-900 dark:text-gray-100">{post.title}</CardTitle>
+          <CardDescription className="flex items-center space-x-2 text-gray-500 dark:text-gray-400">
             <CalendarIcon className="w-4 h-4" />
             <span>{post.date}</span>
           </CardDescription>
         </CardHeader>
         <CardContent>
-          <Badge variant="secondary" className="mb-4">
+          <Badge variant="secondary" className="mb-6 text-sm font-medium">
             <TagIcon className="w-4 h-4 mr-1" />
             {post.category}
           </Badge>
@@ -120,7 +120,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
             {post.content && renderContent(post.content)}
           </div>
         </CardContent>
-        <CardFooter className="flex flex-col items-start">
+        <CardFooter className="flex flex-col items-start pt-6 border-t border-gray-200 dark:border-gray-700">
           <CommentToggle 
             postId={post.slug}
             isActive={showComments}
@@ -129,7 +129,7 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
         </CardFooter>
       </Card>
       {showComments && (
-        <Card className="mt-4">
+        <Card className="mt-8 shadow-lg">
           <CardContent>
             <CommentSection postId={post.slug} />
           </CardContent>
@@ -138,6 +138,3 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
     </div>
   )
 }
-
-
-
