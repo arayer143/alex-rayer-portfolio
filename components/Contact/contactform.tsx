@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { useState } from 'react'
 import { Button } from "@/components/ui/button"
@@ -9,32 +9,31 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/com
 import { Mail, Phone, MapPin, Github, Linkedin, Twitter } from 'lucide-react'
 
 export default function ContactForm() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [isSubmitting, setIsSubmitting] = useState(false)
   const { toast } = useToast()
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
+
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
+      const form = e.currentTarget
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
         headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+          'Accept': 'application/json'
+        }
       })
-      
-      const result = await response.json()
-      
-      if (response.ok && result.success) {
+
+      if (response.ok) {
         toast({
           title: "Message sent!",
           description: "Thank you for your message. I'll get back to you soon.",
         })
-        setFormData({ name: '', email: '', message: '' })
+        form.reset()
       } else {
-        throw new Error(result.message || 'Failed to send message')
+        throw new Error('Failed to send message')
       }
     } catch (error) {
       toast({
@@ -100,14 +99,13 @@ export default function ContactForm() {
           <CardDescription>I'd love to hear from you!</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
+          <form onSubmit={handleSubmit} action="https://formspree.io/f/manyqgok" method="POST" className="space-y-4">
             <div>
               <label htmlFor="name" className="block text-sm font-medium">Name</label>
               <Input
                 id="name"
+                name="name"
                 type="text"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                 required
                 className="mt-1"
               />
@@ -116,9 +114,8 @@ export default function ContactForm() {
               <label htmlFor="email" className="block text-sm font-medium">Email</label>
               <Input
                 id="email"
+                name="email"
                 type="email"
-                value={formData.email}
-                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 required
                 className="mt-1"
               />
@@ -127,8 +124,7 @@ export default function ContactForm() {
               <label htmlFor="message" className="block text-sm font-medium">Message</label>
               <Textarea
                 id="message"
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                name="message"
                 required
                 className="mt-1"
               />
