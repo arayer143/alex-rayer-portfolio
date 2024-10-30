@@ -42,6 +42,7 @@ export function CommentSection({ postId }: { postId: string }) {
 
   useEffect(() => {
     fetchComments()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postId])
 
   const handleSubmit = async (e: React.FormEvent) => {
