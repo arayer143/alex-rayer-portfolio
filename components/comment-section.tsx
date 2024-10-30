@@ -3,20 +3,14 @@
 import { useState, useEffect } from 'react'
 import { useTheme } from 'next-themes'
 import { useToast } from "@/hooks/use-toast"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { format } from 'date-fns'
 import { Loader2 } from 'lucide-react'
-
-interface Comment {
-  _id: string
-  author: string
-  text: string
-  createdAt: string
-}
+import { getComments, addComment, type Comment } from '@/app/actions/comments'
 
 export function CommentSection({ postId }: { postId: string }) {
   const [comments, setComments] = useState<Comment[]>([])
@@ -26,19 +20,14 @@ export function CommentSection({ postId }: { postId: string }) {
   const { toast } = useToast()
   const { theme } = useTheme()
 
-  useEffect(() => {
-    fetchComments()
-  }, [postId])
-
   const fetchComments = async () => {
     setIsLoading(true)
     try {
-      const response = await fetch(`/api/posts/${postId}/comments`)
-      if (!response.ok) {
-        throw new Error('Failed to fetch comments')
+      const result = await getComments(postId)
+      if (result.error) {
+        throw new Error(result.error)
       }
-      const data = await response.json()
-      setComments(Array.isArray(data) ? data : [])
+      setComments(result.comments ?? [])
     } catch (error) {
       console.error('Error fetching comments:', error)
       toast({
@@ -51,23 +40,26 @@ export function CommentSection({ postId }: { postId: string }) {
     }
   }
 
+  useEffect(() => {
+    fetchComments()
+  }, [postId])
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsSubmitting(true)
     try {
-      const response = await fetch(`/api/posts/${postId}/comments`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newComment),
-      })
-      if (!response.ok) {
-        throw new Error('Failed to add comment')
+      const result = await addComment(
+        postId,
+        newComment.author,
+        newComment.text
+      )
+      
+      if (result.error) {
+        throw new Error(result.error)
       }
-      const addedComment = await response.json()
-      if (addedComment && addedComment._id) {
-        setComments(prevComments => [addedComment, ...prevComments])
+
+      if (result.comment) {
+        setComments((prevComments: Comment[]) => [result.comment!, ...prevComments])
         setNewComment({ author: '', text: '' })
         toast({
           title: "Success",
@@ -128,7 +120,7 @@ export function CommentSection({ postId }: { postId: string }) {
           </div>
         ) : comments.length > 0 ? (
           <div className="space-y-6">
-            {comments.map((comment, index) => (
+            {comments.map((comment) => (
               <div key={comment._id} className="bg-muted rounded-lg p-4 shadow-sm">
                 <div className="flex flex-col sm:flex-row sm:items-start space-y-2 sm:space-y-0 sm:space-x-4">
                   <Avatar className="w-10 h-10 shrink-0">

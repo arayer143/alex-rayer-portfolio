@@ -10,7 +10,7 @@ import { Badge } from "@/components/ui/badge"
 import { CalendarIcon, TagIcon } from 'lucide-react'
 import Navbar from '@/components/Navbar/navbar'
 import { CommentToggle } from '@/components/comment-toggle'
-import { CommentSection } from '@/components/comments-section'
+import { CommentSection } from '@/components/comment-section'
 
 interface BlogPost {
   title: string
