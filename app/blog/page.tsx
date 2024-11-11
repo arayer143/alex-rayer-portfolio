@@ -23,6 +23,13 @@ interface BlogPost {
 
 const blogPosts: BlogPost[] = [
   {
+    title: "Technologies Used in My Next.js Portfolio Project",
+    slug: "nextjs-portfolio-technologies",
+    description: "An overview of the technologies and libraries used to build my Next.js portfolio website with a MongoDB-powered comment section.",
+    category: "Web Development",
+    date: "2024-03-15"
+  },
+  {
     title: "Understanding the Basics of React Hooks",
     slug: "understanding-react-hooks",
     description: "An introduction to React Hooks and how they can simplify your React components.",

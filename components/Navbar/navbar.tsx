@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { Moon, Sun, Menu, X } from 'lucide-react'
+import { Moon, Sun, Menu, X, Github, Linkedin, Twitter } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 
 const Navbar = () => {
@@ -26,9 +26,15 @@ const Navbar = () => {
   const navItems = [
     { name: 'Home', href: '/' },
     { name: 'About', href: '/about' },
-    { name: 'Services', href: '/services' },
+    { name: 'Portfolio', href: '/portfolio' },
     { name: 'Blog', href: '/blog' },
     { name: 'Contact', href: '/contact' },
+  ]
+
+  const socialIcons = [
+    { name: 'GitHub', icon: Github, href: 'https://github.com' },
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://linkedin.com' },
+    { name: 'Twitter', icon: Twitter, href: 'https://twitter.com' },
   ]
 
   if (!mounted) {
@@ -49,12 +55,10 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center">
-              <Link href="/" className="flex-shrink-0">
-                <span className={`text-2xl font-bold ${isDark ? 'text-white' : 'text-gray-800'}`}>Logo</span>
-              </Link>
+              {/* Add your logo here if needed */}
             </div>
             <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
+              <div className="ml-10 flex items-center space-x-4">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
@@ -66,21 +70,35 @@ const Navbar = () => {
                 ))}
               </div>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center space-x-2">
+              <div className="hidden md:flex space-x-2">
+                {socialIcons.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`${isDark ? 'text-gray-300 hover:text-white' : 'text-gray-600 hover:text-gray-900'} p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800`}
+                  >
+                    <item.icon className="h-5 w-5" />
+                    <span className="sr-only">{item.name}</span>
+                  </Link>
+                ))}
+              </div>
               <Button
                 variant="ghost"
                 size="icon"
                 onClick={() => setTheme(isDark ? 'light' : 'dark')}
-                className="ml-4"
+                className="ml-2"
               >
                 {isDark ? (
                   <Sun className="h-5 w-5 text-yellow-500" />
                 ) : (
-                  <Moon className="h-5 w-5 text-gray-700" />
+                  <Moon className="h-5 w-5 text-gray-800" />
                 )}
                 <span className="sr-only">Toggle theme</span>
               </Button>
-              <div className="md:hidden ml-4">
+              <div className="md:hidden ml-2">
                 <Button variant="ghost" size="icon" onClick={toggleMenu}>
                   {isOpen ? (
                     <X className="h-6 w-6" />
