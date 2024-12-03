@@ -14,29 +14,31 @@ const projects = [
     description: "A modern, responsive website for professional pressure washing services.",
     image: "/cleanslatelol-whiteBG.jpg",
     projectLink: "/portfolio/clean-slate",
-    websiteLink: "https://cleanslate.com"
+    websiteLink: "https://cleanslatepressurewashingnola.com"
   },
   {
     title: "Pristine Clean",
     description: "Showcasing professional soft wash services with a sleek, user-friendly design.",
     image: "/pristinecleanlogo.webp",
     projectLink: "/portfolio/pristine-clean",
-    websiteLink: "https://pristineclean.com"
-  },
-  {
-    title: "OutKast Industrial",
-    description: "A robust website for industrial cleaning services, catering to B2B clients.",
-    image: "/outkast-logo.webp",
-    projectLink: "/portfolio/outkast-industrial",
-    websiteLink: "https://outkastindustrial.com"
+    websiteLink: "https://pristinecleansoftwash.com"
   },
   {
     title: "RayDunn",
     description: "A portfolio website showcasing web development and design services.",
     image: "/PNG Transparent Logo.png",
     projectLink: "/portfolio/raydunn",
-    websiteLink: "https://raydunn.com"
+    websiteLink: "https://raydunnsolutions.com"
+  },
+
+  {
+    title: "OutKast Industrial",
+    description: "A robust website for industrial cleaning services, catering to B2B clients.",
+    image: "/outkast-logo.webp",
+    projectLink: "/portfolio/outkast-industrial",
+    websiteLink: "https://outkastindustrial.com"
   }
+
 ]
 
 export default function PortfolioSection() {
@@ -58,7 +60,7 @@ export default function PortfolioSection() {
             Explore some of our recent projects, showcasing our expertise in creating stunning and functional websites.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}

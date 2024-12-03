@@ -40,7 +40,7 @@ export interface Project {
       description: 'Showcasing professional soft wash services with a sleek, user-friendly design.',
       fullDescription: 'Pristine Clean\'s website is tailored for a soft wash service provider, emphasizing their gentle yet effective cleaning methods. The design focuses on conveying a sense of cleanliness and attention to detail.',
       image: '/pristinecleanlogo.webp',
-      websiteLink: 'https://pristineclean.com',
+      websiteLink: 'https://pristinecleansoftwash.com',
       technologies: ['React', 'Node.js', 'Express', 'MongoDB', 'Sass'],
       features: [
         'Custom animations to showcase cleaning process',
