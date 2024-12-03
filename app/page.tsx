@@ -1,10 +1,11 @@
 
-import ContactForm from "@/components/Contact/contactform";
-import Footer from "@/components/Footer/footer";
-import HeroSection from "@/components/Hero/hero-section";
+
+import Footer from "@/components/footer";
+import HeroSection from "@/components/Home Page/hero-section";
 import AboutMe from "@/components/Home Page/about-me";
 import PortfolioSection from "@/components/Home Page/portfolio-section";
-import Navbar from "@/components/Navbar/navbar";
+import Navbar from "@/components/navbar";
+import { ContactSection } from "@/components/contact-section";
 
 
 
@@ -22,7 +23,7 @@ export default function Home() {
           <HeroSection />
           <AboutMe />
           <PortfolioSection />
-          <ContactForm />
+          <ContactSection />
 
           <Footer />
        

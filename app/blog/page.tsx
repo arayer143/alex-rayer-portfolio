@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Badge } from "@/components/ui/badge"
 import { CalendarIcon, TagIcon } from 'lucide-react'
-import Navbar from '@/components/Navbar/navbar'
+import Navbar from '@/components/navbar'
 import { CommentToggle } from '@/components/comment-toggle'
 import { CommentSection } from '@/components/comment-section'
 

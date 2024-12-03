@@ -8,7 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter }
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { CalendarIcon, TagIcon, ArrowLeftIcon, Copy, Check } from 'lucide-react'
-import Navbar from '@/components/Navbar/navbar'
+import Navbar from '@/components/navbar'
 import { CommentToggle } from '@/components/comment-toggle'
 import { CommentSection } from '@/components/comment-section'
 import Prism from 'prismjs'

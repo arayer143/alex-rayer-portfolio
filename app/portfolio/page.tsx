@@ -1,7 +1,7 @@
-import AboutPage from "@/components/About/about-me";
-import Footer from "@/components/Footer/footer";
+import AboutPage from "@/components/About/about-page";
+import Footer from "@/components/footer";
 
-import Navbar from "@/components/Navbar/navbar";
+import Navbar from "@/components/navbar";
 import PortfolioPage from "@/components/Portfolio Page/portfolio-page";
 
 export default function Home() {
