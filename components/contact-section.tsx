@@ -83,13 +83,13 @@ export function ContactSection() {
                 <Button variant="outline" className="w-full justify-start" asChild>
                   <a href="mailto:alexrayer7@gmail.com">
                     <FaEnvelope className="mr-2" />
-                    alexrayer7@gmail.com
+                    Email Me
                   </a>
                 </Button>
                 <Button variant="outline" className="w-full justify-start" asChild>
                   <a href="tel:9858692356">
                     <FaPhone className="mr-2" />
-                    (985) 869-2356
+                    Call Me
                   </a>
                 </Button>
               </div>
