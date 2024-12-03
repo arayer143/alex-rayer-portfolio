@@ -4,7 +4,7 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Code, Paintbrush, Rocket, Server } from "lucide-react"
+import { ArrowRight, Code, Paintbrush, Rocket, Server } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -16,25 +16,25 @@ const projects = [
     title: "Clean Slate",
     description: "Modern, responsive website for pressure washing services.",
     image: "/cleanslatelol-whiteBG.jpg",
-    link: "/projects/clean-slate"
+    link: "/portfolio/clean-slate"
   },
   {
     title: "Pristine Clean",
     description: "Sleek design for professional soft wash services.",
     image: "/pristinecleanlogo.webp",
-    link: "/projects/pristine-clean"
+    link: "/portfolio/pristine-clean"
   },
   {
     title: "OutKast Industrial",
     description: "Robust B2B website for industrial cleaning services.",
     image: "/outkast-logo.webp",
-    link: "/projects/outkast-industrial"
+    link: "/portfolio/outkast-industrial"
   },
   {
     title: "RayDunn",
     description: "Portfolio showcasing web development and design.",
     image: "/PNG Transparent Logo.png",
-    link: "/projects/raydunn"
+    link: "/portfolio/raydunn"
   }
 ]
 
@@ -145,3 +145,4 @@ export default function PortfolioPage() {
     </div>
   )
 }
+

@@ -1,0 +1,21 @@
+{
+    "name": "RayDunn Web Solutions ",
+    "short_name": "RayDunn",
+    "description": "Web des",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#0000000",
+    "theme_color": "222.2 47.4% 11.2%",
+    "icons": [
+      {
+        "src": "/PNG Transparent Logo.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "/PNG Transparent Logo.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }

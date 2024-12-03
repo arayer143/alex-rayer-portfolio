@@ -1,6 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { motion, useAnimation } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { useTheme } from 'next-themes'
@@ -100,12 +101,15 @@ export default function HeroSection() {
           transition={{ duration: 0.8, delay: 0.4 }}
           className="space-x-4"
         >
+          <Link href="/portfolio">
           <Button 
             size="lg" 
             className={isDark ? "bg-purple-600 text-white hover:bg-purple-700" : "bg-blue-600 text-white hover:bg-blue-700"}
           >
             View Projects
           </Button>
+          </Link>
+          <Link href="/contact">
           <Button 
             size="lg" 
             variant="outline" 
@@ -113,6 +117,7 @@ export default function HeroSection() {
           >
             Contact Me
           </Button>
+          </Link>
         </motion.div>
       </div>
     </section>

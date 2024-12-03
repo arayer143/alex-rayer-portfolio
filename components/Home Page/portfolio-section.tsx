@@ -4,34 +4,38 @@ import { useRef } from "react"
 import { motion, useInView } from "framer-motion"
 import Image from "next/image"
 import Link from "next/link"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, ExternalLink } from 'lucide-react'
 
 const projects = [
   {
     title: "Clean Slate",
     description: "A modern, responsive website for professional pressure washing services.",
     image: "/cleanslatelol-whiteBG.jpg",
-    link: "/projects/clean-slate"
+    projectLink: "/portfolio/clean-slate",
+    websiteLink: "https://cleanslate.com"
   },
   {
     title: "Pristine Clean",
     description: "Showcasing professional soft wash services with a sleek, user-friendly design.",
     image: "/pristinecleanlogo.webp",
-    link: "/projects/pristine-clean"
+    projectLink: "/portfolio/pristine-clean",
+    websiteLink: "https://pristineclean.com"
   },
   {
     title: "OutKast Industrial",
     description: "A robust website for industrial cleaning services, catering to B2B clients.",
     image: "/outkast-logo.webp",
-    link: "/projects/outkast-industrial"
+    projectLink: "/portfolio/outkast-industrial",
+    websiteLink: "https://outkastindustrial.com"
   },
   {
     title: "RayDunn",
     description: "A portfolio website showcasing web development and design services.",
     image: "/PNG Transparent Logo.png",
-    link: "/projects/raydunn"
+    projectLink: "/portfolio/raydunn",
+    websiteLink: "https://raydunn.com"
   }
 ]
 
@@ -81,22 +85,33 @@ export default function PortfolioSection() {
                   <CardTitle className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">
                     {project.title}
                   </CardTitle>
-                  <CardDescription className="text-gray-600 dark:text-gray-300">
+                  <CardDescription className="text-gray-600 dark:text-gray-300 mb-4">
                     {project.description}
                   </CardDescription>
+                  <Link 
+                    href={project.websiteLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="text-blue-600 hover:text-blue-800 dark:text-purple-400 dark:hover:text-purple-300 inline-flex items-center"
+                  >
+                    Visit Website
+                    <ExternalLink className="ml-1 h-4 w-4" />
+                  </Link>
                 </CardContent>
-                <CardFooter>
-                  <Button asChild variant="default" className="w-full group bg-blue-600 hover:bg-blue-700 dark:bg-purple-600 dark:hover:bg-purple-700 text-white transition-colors duration-300">
-                    <Link href={project.link} className="flex items-center justify-center">
-                      View Project
-                      <motion.span
-                        className="ml-2"
-                        initial={{ x: 0 }}
-                        whileHover={{ x: 5 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <ArrowRight className="h-4 w-4" />
-                      </motion.span>
+                <CardFooter className="flex justify-between">
+                  <Button asChild variant="outline" className="w-full">
+                    <Link href={project.projectLink}>
+                      <span className="flex items-center justify-center">
+                        Learn More
+                        <motion.span
+                          className="ml-2"
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 5 }}
+                          transition={{ duration: 0.3 }}
+                        >
+                          <ArrowRight className="h-4 w-4" />
+                        </motion.span>
+                      </span>
                     </Link>
                   </Button>
                 </CardFooter>
