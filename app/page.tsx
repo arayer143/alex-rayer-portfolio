@@ -31,7 +31,12 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Alex Rayer | Web Developer & Designer',
     description: 'Check out my portfolio for innovative web solutions using cutting-edge technologies.',
-    images: ['https://www.alexrayer.com/alexrayer-banner.webp'],
+    images: [{
+      url: 'https://www.alexrayer.com/alexrayer-banner.webp',
+      width: 1200,
+      height: 600,
+      alt: 'Alex Rayer Portfolio Preview',
+    }],
     creator: '@alexrayer',
   },
   robots: {
@@ -68,3 +73,4 @@ export default function Home() {
     </div>
   )
 }
+
