@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description: 'Check out my portfolio for innovative web solutions using cutting-edge technologies.',
     images: [{
       url: 'https://www.alexrayer.com/alexrayer-banner.webp',
-      width: 1200,
+      width: 900,
       height: 600,
       alt: 'Alex Rayer Portfolio Preview',
     }],
