@@ -1,9 +1,9 @@
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, ExternalLink, Home } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink, Home } from 'lucide-react'
 import { projectsData } from '@/data/projects'
-import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { Separator } from "@/components/ui/separator"
@@ -77,10 +77,16 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             </div>
           </div>
         </CardContent>
-        <CardFooter className="bg-muted p-6">
-          <p className="text-sm text-muted-foreground">
-            This project was developed by our team. For more information or to discuss a similar project, please get in touch.
+        <CardFooter className="bg-muted p-6 flex flex-col items-center justify-center text-center space-y-4">
+          <p className="text-sm text-muted-foreground max-w-md">
+            For more information or to discuss a similar project, please get in touch.
           </p>
+          <Button asChild className="group transition-all duration-300 ease-in-out hover:bg-primary hover:text-primary-foreground">
+            <Link href="/contact" className="inline-flex items-center">
+              Contact Me
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-in-out group-hover:translate-x-1" />
+            </Link>
+          </Button>
         </CardFooter>
       </Card>
     </div>
