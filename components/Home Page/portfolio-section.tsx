@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
 import { ArrowRight, ExternalLink } from 'lucide-react'
 
 const projects = [
@@ -14,31 +15,41 @@ const projects = [
     description: "A modern, responsive website for professional pressure washing services.",
     image: "/cleanslatelol-whiteBG.jpg",
     projectLink: "/portfolio/clean-slate",
-    websiteLink: "https://cleanslatepressurewashingnola.com"
+    websiteLink: "https://cleanslatepressurewashingnola.com",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
     title: "Pristine Clean",
     description: "Showcasing professional soft wash services with a sleek, user-friendly design.",
     image: "/pristinecleanlogo.webp",
     projectLink: "/portfolio/pristine-clean",
-    websiteLink: "https://pristinecleansoftwash.com"
+    websiteLink: "https://pristinecleansoftwash.com",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
     title: "RayDunn",
     description: "A portfolio website showcasing web development and design services.",
     image: "/PNG Transparent Logo.png",
     projectLink: "/portfolio/raydunn",
-    websiteLink: "https://raydunnsolutions.com"
+    websiteLink: "https://raydunnsolutions.com",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
   },
-
   {
     title: "OutKast Industrial",
     description: "A robust website for industrial cleaning services, catering to B2B clients.",
     image: "/outkast-logo.webp",
     projectLink: "/portfolio/outkast-industrial",
-    websiteLink: "https://outkastindustrial.com"
+    websiteLink: "https://outkastindustrial.com",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+  },
+  {
+    title: "Jessie Boudreaux Social Media",
+    description: "A turnkey WordPress solution for a social media company, focusing on ease of use and client management.",
+    image: "/jessie-boudreaux-logo.webp",
+    projectLink: "/portfolio/jessie-boudreaux",
+    websiteLink: "https://jessieboudreaux.com",
+    technologies: ["WordPress", "Custom Theme", "Responsive Design", "SEO Optimization"]
   }
-
 ]
 
 export default function PortfolioSection() {
@@ -57,10 +68,10 @@ export default function PortfolioSection() {
             Our Portfolio
           </h2>
           <p className="text-xl text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
-            Explore some of our recent projects, showcasing our expertise in creating stunning and functional websites.
+            Explore some of our recent projects, showcasing our expertise in creating stunning and functional websites across various technologies.
           </p>
         </motion.div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -90,6 +101,13 @@ export default function PortfolioSection() {
                   <CardDescription className="text-gray-600 dark:text-gray-300 mb-4">
                     {project.description}
                   </CardDescription>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {project.technologies.map((tech) => (
+                      <Badge key={tech} variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
                   <Link 
                     href={project.websiteLink} 
                     target="_blank" 
@@ -125,3 +143,4 @@ export default function PortfolioSection() {
     </section>
   )
 }
+
