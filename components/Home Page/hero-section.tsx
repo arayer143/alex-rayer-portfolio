@@ -11,15 +11,15 @@ const Star = ({ size, top, left, delay, isDark }: { size: number, top: string, l
 
   useEffect(() => {
     controls.start({
-      opacity: [0, 0.7, 0],
-      scale: [0, 1, 0],
-      transition: { duration: 2, repeat: Infinity, delay }
+      opacity: [0, 1, 0],
+      scale: [0.5, 1, 0.5],
+      transition: { duration: Math.random() * 3 + 2, repeat: Infinity, delay }
     })
   }, [controls, delay])
 
   return (
     <motion.div
-      className={`absolute rounded-full ${isDark ? 'bg-purple-400' : 'bg-blue-800'}`}
+      className={`absolute rounded-full ${isDark ? 'bg-white' : 'bg-blue-800'}`}
       style={{ width: size, height: size, top, left }}
       animate={controls}
     />
@@ -36,8 +36,8 @@ const SpaceBackground = () => {
     setMounted(true)
     const createStars = () => {
       const newStars = []
-      for (let i = 0; i < 100; i++) {
-        const size = Math.random() * 2 + 1
+      for (let i = 0; i < 200; i++) {
+        const size = Math.random() * 3 + 0.5
         const top = `${Math.random() * 100}%`
         const left = `${Math.random() * 100}%`
         const delay = Math.random() * 5
@@ -57,8 +57,13 @@ const SpaceBackground = () => {
 
   return (
     <div ref={containerRef} className="absolute inset-0 overflow-hidden">
-      <div className={`absolute inset-0 ${isDark ? 'bg-gradient-to-b from-black to-purple-900' : 'bg-gradient-to-b from-blue-100 to-blue-200'}`} />
+      <div className={`absolute inset-0 ${
+        isDark 
+          ? 'bg-gradient-radial from-purple-900 via-gray-900 to-black' 
+          : 'bg-gradient-radial from-blue-200 via-blue-300 to-blue-400'
+      }`} />
       {stars}
+      <div className="absolute inset-0 bg-[url('/images/nebula.png')] bg-cover bg-center opacity-20" />
     </div>
   )
 }
@@ -76,7 +81,7 @@ export default function HeroSection() {
   const isDark = resolvedTheme === 'dark'
 
   return (
-    <section className={`relative h-[80vh] flex items-center justify-center overflow-hidden ${isDark ? 'bg-background text-foreground' : 'bg-blue-50 text-gray-800'}`}>
+    <section className={`relative h-[60vh] flex items-center justify-center overflow-hidden ${isDark ? 'bg-background text-foreground' : 'bg-blue-50 text-gray-800'}`}>
       <SpaceBackground />
       <div className="relative z-10 text-center px-4">
         <motion.h1 
@@ -102,21 +107,21 @@ export default function HeroSection() {
           className="space-x-4"
         >
           <Link href="/portfolio">
-          <Button 
-            size="lg" 
-            className={isDark ? "bg-purple-600 text-white hover:bg-purple-700" : "bg-blue-600 text-white hover:bg-blue-700"}
-          >
-            View Projects
-          </Button>
+            <Button 
+              size="lg" 
+              className={isDark ? "bg-purple-600 text-white hover:bg-purple-700" : "bg-blue-600 text-white hover:bg-blue-700"}
+            >
+              View Projects
+            </Button>
           </Link>
           <Link href="/contact">
-          <Button 
-            size="lg" 
-            variant="outline" 
-            className={isDark ? "border-purple-600 text-purple-300 hover:bg-purple-600 hover:text-white" : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"}
-          >
-            Contact Me
-          </Button>
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className={isDark ? "border-purple-600 text-purple-300 hover:bg-purple-600 hover:text-white" : "border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white"}
+            >
+              Contact Me
+            </Button>
           </Link>
         </motion.div>
       </div>

@@ -11,6 +11,14 @@ export default function Footer() {
     { title: "Technologies Used in My Next.js Portfolio Project", slug: "nextjs-portfolio-technologies" },
   ]
 
+  const navItems = [
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Portfolio', href: '/portfolio' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Contact', href: '/contact' },
+  ]
+
   return (
     <footer className="border-t bg-background">
       <Card className="m-4">
@@ -58,17 +66,17 @@ export default function Footer() {
               </div>
             </div>
             <div>
-              <h3 className="text-lg font-semibold mb-4">Navigation</h3>
+              <h3 className="text-lg font-semibold mb-4 text-gray-900 dark:text-gray-100">Navigation</h3>
               <nav>
                 <ul className="space-y-2">
-                  {["Home", "Projects", "Blog", "Contact"].map((item) => (
-                    <li key={item}>
+                  {navItems.map((item) => (
+                    <li key={item.name}>
                       <Button 
                         variant="link" 
                         className="p-0 h-auto text-blue-500 hover:text-blue-600 dark:text-purple-400 dark:hover:text-purple-300"
                         asChild
                       >
-                        <Link href={`/${item.toLowerCase()}`}>{item}</Link>
+                        <Link href={item.href}>{item.name}</Link>
                       </Button>
                     </li>
                   ))}
@@ -105,7 +113,6 @@ export default function Footer() {
           <p className="text-sm text-muted-foreground">
             © {new Date().getFullYear()} Alex Rayer. All rights reserved.
           </p>
-
         </CardFooter>
       </Card>
     </footer>
