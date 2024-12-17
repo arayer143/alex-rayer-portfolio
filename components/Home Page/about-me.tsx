@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect, useRef, useState } from 'react'
-import Image from 'next/image'
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
@@ -89,7 +89,7 @@ export default function AboutMe() {
           <Card className={`md:col-span-1 ${isDark ? 'bg-gray-800/80' : 'bg-white/80'} backdrop-blur-sm`}>
             <CardHeader>
               <Avatar className="w-32 h-32 mx-auto">
-                <AvatarImage src="/alex-rayer.png" alt="Alex Rayer" />
+                <AvatarImage src="/alex-rayer.webp" alt="Alex Rayer" />
                 <AvatarFallback>AR</AvatarFallback>
               </Avatar>
             </CardHeader>
