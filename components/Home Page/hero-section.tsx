@@ -84,6 +84,7 @@ export default function HeroSection() {
     <section className={`relative h-[60vh] flex items-center justify-center overflow-hidden ${isDark ? 'bg-background text-foreground' : 'bg-blue-50 text-gray-800'}`}>
       <SpaceBackground />
       <div className="relative z-10 text-center px-4">
+        <h1 className="sr-only">Alex Rayer - Web Developer & Designer</h1>
         <motion.h1 
           className={`text-4xl md:text-6xl font-bold mb-4 ${isDark ? 'text-white' : 'text-gray-800'}`}
           initial={{ opacity: 0, y: -50 }}
@@ -128,3 +129,4 @@ export default function HeroSection() {
     </section>
   )
 }
+

@@ -32,6 +32,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
           </Link>
         </Button>
       </div>
+      <h1 className="sr-only">{project.title} - Project Details</h1>
       <Card className="overflow-hidden">
         <CardHeader className="relative h-[300px] md:h-[400px]">
           <Image
@@ -92,3 +93,4 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
     </div>
   )
 }
+
