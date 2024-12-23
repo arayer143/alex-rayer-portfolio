@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useTheme } from 'next-themes'
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import ReactMarkdown from 'react-markdown'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
@@ -57,43 +58,41 @@ export default function BlogPostPage({ params }: { params: Promise<{ slug: strin
   }
 
   const renderContent = (content: string) => {
-    const parts = content.split(/(```\w+\n[\s\S]*?\n```|\n- .*)/g)
-    return parts.map((part, index) => {
-      if (part.startsWith('```')) {
-        const [, language, code] = part.match(/```(\w+)\n([\s\S]*?)\n```/) || []
-        return (
-          <div key={index} className="relative mb-6">
-            <pre className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto">
-              <code className={`language-${language}`}>{code.trim()}</code>
-            </pre>
-            <Button
-              variant="outline"
-              size="sm"
-              className="absolute top-2 right-2"
-              onClick={() => copyToClipboard(code)}
-            >
-              {copiedSnippet === code ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-            </Button>
-          </div>
-        )
-      } else if (part.startsWith('\n- ')) {
-        const items = part.split('\n').filter(item => item.trim() !== '' && item !== '- ')
-        if (items.length === 0) return null
-        return (
-          <ul key={index} className="list-disc list-inside mb-6 pl-4 space-y-2">
-            {items.map((item, i) => (
-              <li key={i} className="text-gray-700 dark:text-gray-300">{item.slice(2)}</li>
-            ))}
-          </ul>
-        )
-      } else {
-        return (
-          <p key={index} className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">
-            {part}
-          </p>
-        )
-      }
-    }).filter(Boolean)
+    return (
+      <ReactMarkdown
+        components={{
+          code({node, className, children, ...props}) {
+            const match = /language-(\w+)/.exec(className || '')
+            return match ? (
+              <div className="relative mb-6">
+                <pre className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto">
+                  <code className={className} {...props}>
+                    {children}
+                  </code>
+                </pre>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="absolute top-2 right-2"
+                  onClick={() => copyToClipboard(String(children))}
+                >
+                  {copiedSnippet === String(children) ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
+                </Button>
+              </div>
+            ) : (
+              <code className={className} {...props}>
+                {children}
+              </code>
+            )
+          },
+          p: ({children}) => <p className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">{children}</p>,
+          ul: ({children}) => <ul className="list-disc list-inside mb-6 pl-4 space-y-2">{children}</ul>,
+          li: ({children}) => <li className="text-gray-700 dark:text-gray-300">{children}</li>,
+        }}
+      >
+        {content}
+      </ReactMarkdown>
+    )
   }
 
   return (

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
+import ReactMarkdown from 'react-markdown'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
@@ -63,6 +64,13 @@ const blogPosts: BlogPost[] = [
     description: "Learn how to create a fully functional comment section using Next.js API routes and MongoDB, with a step-by-step guide on installation and implementation.",
     category: "Web Development",
     date: "2023-07-05"
+  },
+  {
+    title: "Implementing a Secure Client Portal with Next.js and Prisma",
+    slug: "secure-client-portal-nextjs-prisma",
+    description: "A detailed look at how I built a secure client portal using Next.js, Prisma, and NextAuth.js, integrated with Vercel for seamless deployment.",
+    category: "Web Development",
+    date: "2024-03-20"
   }
 ]
 
@@ -118,7 +126,9 @@ export default function BlogIndexPage() {
                 </CardDescription>
               </CardHeader>
               <CardContent className="flex-grow flex flex-col">
-                <p className="mb-4">{post.description}</p>
+                <ReactMarkdown className="mb-4 prose dark:prose-invert max-w-none">
+                  {post.description}
+                </ReactMarkdown>
                 <div className="mt-auto flex flex-col space-y-4">
                   <div className="flex justify-between items-center">
                     <Badge variant="secondary" className="self-start">
