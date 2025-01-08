@@ -1,10 +1,9 @@
 import { Metadata } from 'next'
 import Footer from "@/components/footer"
-import HeroSection from "@/components/Home Page/hero-section"
-import AboutMe from "@/components/Home Page/about-me"
-import PortfolioSection from "@/components/Home Page/portfolio-section"
-import Navbar from "@/components/navbar"
-import { ContactSection } from "@/components/contact-section"
+import HeroSection from "@/components/Home Page/Hero Section/HeroSection"
+import AboutMe from "@/components/Home Page/About Me/about-me"
+import PortfolioSection from "@/components/Home Page/Portfolio Section/portfolio-section"
+import { ContactSection } from "@/components/Contact Form/ContactSection"
 
 export const metadata: Metadata = {
   title: 'Alex Rayer | Web Developer & Designer',
@@ -59,9 +58,8 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <Navbar />
-      <main className="flex">
+    <div className="flex-col min-h-screen">
+      <main className="flex-grow">
         <section className="w-full bg-gray-100 dark:bg-gray-800">
           <HeroSection />
           <AboutMe />
@@ -73,4 +71,5 @@ export default function Home() {
     </div>
   )
 }
+
 
