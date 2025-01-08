@@ -24,18 +24,20 @@ export function ProjectCard({ project, projectKey }: ProjectCardProps) {
       <Card className="overflow-hidden h-full flex flex-col bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
         <CardHeader className="p-0">
           <motion.div 
-            className="relative h-48 w-full"
+            className="relative w-full h-[200px] bg-white dark:bg-gray-900 overflow-hidden"
             whileHover={{ scale: 1.05 }}
             transition={{ duration: 0.3 }}
           >
-            <Image
-              src={project.image}
-              alt={`${project.title} project thumbnail`}
-              fill
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              style={{ objectFit: "cover" }}
-              quality={80}
-            />
+            <div className="absolute inset-0 flex items-center justify-center p-4">
+              <Image
+                src={project.image}
+                alt={`${project.title} project thumbnail`}
+                width={400}
+                height={200}
+                className="object-contain w-full h-full"
+                priority
+              />
+            </div>
           </motion.div>
         </CardHeader>
         <CardContent className="p-6 flex-grow">
@@ -88,3 +90,4 @@ export function ProjectCard({ project, projectKey }: ProjectCardProps) {
     </motion.div>
   )
 }
+

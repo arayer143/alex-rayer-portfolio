@@ -17,8 +17,8 @@ export const projectsData: ProjectsData = {
     title: 'Clean Slate Pressure Washing',
     description: 'A modern, responsive website for professional pressure washing services.',
     fullDescription: 'Clean Slate Pressure Washing is a comprehensive web solution designed for a professional pressure washing service. The website showcases the company\'s services, pricing, and before-and-after gallery to effectively demonstrate the quality of their work. Built with cutting-edge technologies, it offers a seamless user experience across all devices.',
-    image: '/cleanslatelol-whiteBG.jpg',
-    websiteLink: 'https://cleanslate.com',
+    image: '/cleanslatelol-whiteBG.webp',
+    websiteLink: 'https://cleanslatepressurewashingnola.com',
     technologies: [
       'React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'shadcn/ui', 'Framer Motion',
       'Three.js', 'React Three Fiber', 'Embla Carousel', 'React Hook Form', 'Zod',
@@ -86,8 +86,8 @@ export const projectsData: ProjectsData = {
     title: 'RayDunn',
     description: 'A portfolio website showcasing web development and design services.',
     fullDescription: 'RayDunn is a personal portfolio website showcasing web development and design services. Built with Next.js and TypeScript, the site features a modern, responsive design using Tailwind CSS and shadcn/ui components. It incorporates smooth animations with Framer Motion, type-safe form handling, and various developer-friendly tools to create an engaging and performant user experience.',
-    image: '/PNG Transparent Logo.png',
-    websiteLink: 'https://raydunn.com',
+    image: '/PNG Transparent Logo.webp',
+    websiteLink: 'https://raydunnsolutions.com',
     technologies: [
       'Next.js',
       'React',
