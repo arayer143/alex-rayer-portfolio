@@ -27,14 +27,6 @@ const projects = [
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
   {
-    title: "OutKast Industrial",
-    description: "Website for industrial cleaning services.",
-    image: "/outkast-logo.webp",
-    projectLink: "/portfolio/outkast-industrial",
-    websiteLink: "https://outkastindustrial.com",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
-  },
-  {
     title: "RayDunn",
     description: "Portfolio showcasing web development and design services.",
     image: "/PNG Transparent Logo.png",
@@ -42,6 +34,15 @@ const projects = [
     websiteLink: "https://raydunnsolutions.com",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
   },
+  {
+    title: "OutKast Industrial",
+    description: "Website for industrial cleaning services.",
+    image: "/outkast-logo.webp",
+    projectLink: "/portfolio/outkast-industrial",
+    websiteLink: "https://outkastindustrial.com",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
+  },
+
   {
     title: "Jessie Boudreaux",
     description: "Turnkey WordPress solution for a social media company.",
