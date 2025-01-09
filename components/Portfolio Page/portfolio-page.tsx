@@ -13,7 +13,7 @@ const projects = [
   {
     title: "Clean Slate",
     description: "Modern, responsive website for pressure washing services.",
-    image: "/cleanslatelol-whiteBG.jpg",
+    image: "/cleanslatelol-whiteBG.webp",
     projectLink: "/portfolio/clean-slate",
     websiteLink: "https://cleanslatepressurewashingnola.com",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
@@ -28,7 +28,7 @@ const projects = [
   },
   {
     title: "OutKast Industrial",
-    description: "Robust B2B website for industrial cleaning services.",
+    description: "Website for industrial cleaning services.",
     image: "/outkast-logo.webp",
     projectLink: "/portfolio/outkast-industrial",
     websiteLink: "https://outkastindustrial.com",

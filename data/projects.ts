@@ -69,7 +69,7 @@ export const projectsData: ProjectsData = {
   },
   'outkast-industrial': {
     title: 'OutKast Industrial',
-    description: 'A robust website for industrial cleaning services, catering to B2B clients.',
+    description: 'A robust website for industrial cleaning services.',
     fullDescription: 'OutKast Industrial\'s website is designed to cater to B2B clients in need of industrial cleaning services. The site emphasizes the company\'s expertise, safety standards, and advanced cleaning technologies.',
     image: '/outkast-logo.webp',
     websiteLink: 'https://outkastindustrial.com',
@@ -84,7 +84,7 @@ export const projectsData: ProjectsData = {
   },
   'raydunn': {
     title: 'RayDunn',
-    description: 'A portfolio website showcasing web development and design services.',
+    description: 'A website I created for my web development company RayDunn Web Solutions.',
     fullDescription: 'RayDunn is a personal portfolio website showcasing web development and design services. Built with Next.js and TypeScript, the site features a modern, responsive design using Tailwind CSS and shadcn/ui components. It incorporates smooth animations with Framer Motion, type-safe form handling, and various developer-friendly tools to create an engaging and performant user experience.',
     image: '/PNG Transparent Logo.webp',
     websiteLink: 'https://raydunnsolutions.com',
@@ -112,4 +112,33 @@ export const projectsData: ProjectsData = {
       'Date formatting and manipulation with date-fns'
     ]
   },
+  'jessieBoudreaux': {
+  title: 'Jessie Boudreaux',
+  description: 'Turnkey WordPress solution for a social media company.',
+  fullDescription: 'Jessie Boudreaux is a custom WordPress website designed for a social media company. This project showcases a turnkey solution that combines elegant design with powerful functionality. The website features a responsive layout, ensuring optimal viewing across all devices, and is optimized for search engines to improve online visibility. The custom theme provides a unique, branded experience tailored to the clients specific needs and industry.',
+  image: '/jessie-boudreaux-logo.webp',
+  websiteLink: 'https://jessieboudreaux.com',
+  technologies: [
+    'WordPress',
+    'Custom Theme Development',
+    'PHP',
+    'HTML5',
+    'CSS3',
+    'JavaScript',
+    'Responsive Design',
+    'SEO Optimization',
+    'MySQL'
+  ],
+  features: [
+    'Custom WordPress theme tailored to clients brand',
+    'Responsive design for optimal viewing on all devices',
+    'SEO optimization to improve search engine rankings',
+    'Easy-to-use content management system',
+    'Integration with social media platforms',
+    'Fast-loading pages for improved user experience',
+    'Custom post types and taxonomies for organized content',
+    'Contact form with spam protection',
+    'Google Analytics integration for traffic monitoring'
+  ]
+},
 };
