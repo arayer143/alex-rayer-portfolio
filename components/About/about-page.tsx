@@ -2,59 +2,81 @@
 
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
+import { FaReact, FaNodeJs, FaGithub as FaGithub2, FaAws, FaDocker } from 'react-icons/fa'
 import { 
-  SiHtml5, SiCss3, SiJavascript, SiTypescript, SiReact, SiNextdotjs,
-  SiTailwindcss, SiBootstrap, SiSass, SiGit, SiGithub, SiPhp, SiMongodb,
-  SiGooglechrome, SiVercel, SiNetlify, SiJira, SiGooglesearchconsole,
-  SiLighthouse, SiSemrush
-} from "react-icons/si"
+  SiNextdotjs, SiTypescript, SiJavascript, SiHtml5, SiCss3, 
+  SiTailwindcss, SiExpress, SiMongodb, SiGraphql,
+  SiGit, SiFigma, SiPostman, SiGoogletagmanager,
+  SiWordpress, SiPhp, SiVercel, SiNetlify,
+  SiJest, SiVisualstudiocode, SiGoogleanalytics
+} from 'react-icons/si'
+import { TbBrandNextjs, TbBrandThreejs } from 'react-icons/tb'
+
+const technologies = {
+  frontend: [
+    { name: "React", icon: FaReact, color: "text-blue-500 dark:text-blue-400" },
+    { name: "Next.js", icon: TbBrandNextjs, color: "text-black dark:text-white" },
+    { name: "TypeScript", icon: SiTypescript, color: "text-blue-600 dark:text-blue-400" },
+    { name: "JavaScript", icon: SiJavascript, color: "text-yellow-500 dark:text-yellow-400" },
+    { name: "HTML5", icon: SiHtml5, color: "text-orange-500 dark:text-orange-400" },
+    { name: "CSS3", icon: SiCss3, color: "text-blue-500 dark:text-blue-400" },
+    { name: "Tailwind CSS", icon: SiTailwindcss, color: "text-cyan-500 dark:text-cyan-400" },
+    { name: "Three.js", icon: TbBrandThreejs, color: "text-white dark:text-gray-200" },
+    { name: "WordPress", icon: SiWordpress, color: "text-blue-500 dark:text-blue-400" },
+  ],
+  backend: [
+    { name: "Node.js", icon: FaNodeJs, color: "text-green-600 dark:text-green-500" },
+    { name: "Express", icon: SiExpress, color: "text-gray-600 dark:text-gray-400" },
+    { name: "PHP", icon: SiPhp, color: "text-purple-500 dark:text-purple-400" },
+    { name: "MongoDB", icon: SiMongodb, color: "text-green-500 dark:text-green-400" },
+    { name: "GraphQL", icon: SiGraphql, color: "text-pink-600 dark:text-pink-400" },
+  ],
+  testing: [
+    { name: "Jest", icon: SiJest, color: "text-red-500 dark:text-red-400" },
+
+  ],
+  devops: [
+    { name: "Git", icon: SiGit, color: "text-orange-600 dark:text-orange-400" },
+    { name: "GitHub", icon: FaGithub2, color: "text-gray-800 dark:text-gray-200" },
+    { name: "AWS", icon: FaAws, color: "text-orange-500 dark:text-orange-400" },
+    { name: "Vercel", icon: SiVercel, color: "text-black dark:text-white" },
+    { name: "Netlify", icon: SiNetlify, color: "text-teal-500 dark:text-teal-400" },
+  ],
+  tools: [
+    { name: "VS Code", icon: SiVisualstudiocode, color: "text-blue-500 dark:text-blue-400" },
+    { name: "Figma", icon: SiFigma, color: "text-purple-500 dark:text-purple-400" },
+    { name: "Postman", icon: SiPostman, color: "text-orange-500 dark:text-orange-400" },
+    { name: "Google Analytics", icon: SiGoogleanalytics, color: "text-yellow-500 dark:text-yellow-400" },
+    { name: "Google Tag Manager", icon: SiGoogletagmanager, color: "text-blue-500 dark:text-blue-400" },
+  ],
+}
 
 export default function AboutPage() {
   const [isFormSubmitted, setIsFormSubmitted] = useState(false)
 
-  const skills = {
-    frontend: [
-      { name: "HTML5", icon: <SiHtml5 className="w-4 h-4 mr-1" /> },
-      { name: "CSS3", icon: <SiCss3 className="w-4 h-4 mr-1" /> },
-      { name: "JavaScript (ES6+)", icon: <SiJavascript className="w-4 h-4 mr-1" /> },
-      { name: "TypeScript", icon: <SiTypescript className="w-4 h-4 mr-1" /> },
-      { name: "React.js", icon: <SiReact className="w-4 h-4 mr-1" /> },
-      { name: "Next.js", icon: <SiNextdotjs className="w-4 h-4 mr-1" /> },
-      { name: "Tailwind CSS", icon: <SiTailwindcss className="w-4 h-4 mr-1" /> },
-      { name: "Bootstrap", icon: <SiBootstrap className="w-4 h-4 mr-1" /> },
-      { name: "SASS", icon: <SiSass className="w-4 h-4 mr-1" /> },
-    ],
-    backend: [
-      { name: "PHP", icon: <SiPhp className="w-4 h-4 mr-1" /> },
-      { name: "MongoDB", icon: <SiMongodb className="w-4 h-4 mr-1" /> },
-    ],
-    other: [
-      { name: "Responsive Design", icon: <SiCss3 className="w-4 h-4 mr-1" /> },
-      { name: "Mobile-First Design", icon: <SiCss3 className="w-4 h-4 mr-1" /> },
-      { name: "UX Design", icon: <SiCss3 className="w-4 h-4 mr-1" /> },
-      { name: "Git", icon: <SiGit className="w-4 h-4 mr-1" /> },
-      { name: "GitHub", icon: <SiGithub className="w-4 h-4 mr-1" /> },
-      { name: "SEO Basics", icon: <SiGooglesearchconsole className="w-4 h-4 mr-1" /> },
-      { name: "Performance Optimization", icon: <SiLighthouse className="w-4 h-4 mr-1" /> },
-    ]
-  }
-
-  const tools = [
-    { name: "Chrome DevTools", icon: <SiGooglechrome className="w-4 h-4 mr-1" /> },
-    { name: "Vercel", icon: <SiVercel className="w-4 h-4 mr-1" /> },
-    { name: "Netlify", icon: <SiNetlify className="w-4 h-4 mr-1" /> },
-    { name: "Jira", icon: <SiJira className="w-4 h-4 mr-1" /> },
-    { name: "Google Search Console", icon: <SiGooglesearchconsole className="w-4 h-4 mr-1" /> },
-    { name: "Google Lighthouse", icon: <SiLighthouse className="w-4 h-4 mr-1" /> },
-    { name: "Ahrefs", icon: <SiGooglesearchconsole className="w-4 h-4 mr-1" /> },
-    { name: "Semrush", icon: <SiSemrush className="w-4 h-4 mr-1" /> },
+  const projects = [
+    {
+      title: "RayDunn Web Solutions",
+      description: "A dynamic web development agency platform with a multi-client portal and dashboard system.",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Prisma ORM", "NextAuth", "Google Analytics API"]
+    },
+    {
+      title: "Portfolio Website",
+      description: "A cutting-edge portfolio website with a full-stack blog system and immersive 3D user interface.",
+      technologies: ["React", "Next.js", "Tailwind CSS", "Three.js", "MongoDB", "Framer Motion"]
+    },
+    {
+      title: "Client Dashboard",
+      description: "A dynamic, multi-client dashboard system integrating real-time Google Analytics metrics with custom Excel-based payment processing.",
+      technologies: ["Next.js", "React", "TypeScript", "Prisma ORM", "Google Analytics API", "Excel parsing"]
+    }
   ]
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -78,9 +100,7 @@ export default function AboutPage() {
         </CardHeader>
         <CardContent className="mt-4">
           <p className="text-lg mb-6 leading-relaxed dark:text-gray-300">
-            Passionate full stack developer with expertise in modern web technologies. 
-            Specializing in creating responsive, user-friendly web applications with a 
-            focus on performance and SEO optimization.
+            Web Developer with 2+ years of experience in crafting high-performance web applications and data-driven dashboards. Proficient in React, Next.js, TypeScript, and WordPress for front-end development, with strong back-end skills in Node.js, PHP, and MongoDB. Experienced in implementing server-side rendering, static site generation, and API development.
           </p>
           <div className="flex justify-center sm:justify-start gap-4 mb-4">
             <Button 
@@ -111,56 +131,61 @@ export default function AboutPage() {
         </CardContent>
       </Card>
 
-      <Tabs defaultValue="frontend" className="mb-8">
-        <TabsList className="grid w-full grid-cols-3 mb-4">
-          <TabsTrigger value="frontend">Frontend</TabsTrigger>
-          <TabsTrigger value="backend">Backend</TabsTrigger>
-          <TabsTrigger value="other">Other Skills</TabsTrigger>
-        </TabsList>
-        {(Object.keys(skills) as Array<keyof typeof skills>).map((tab) => (
-          <TabsContent key={tab} value={tab} className="mt-4">
-            <Card className="transition-all duration-300 hover:shadow-md dark:bg-gray-800">
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold capitalize">{tab} Skills</CardTitle>
-                <CardDescription>
-                  {tab === "frontend" && "Modern technologies for building interactive UIs"}
-                  {tab === "backend" && "Technologies for server-side development"}
-                  {tab === "other" && "Additional skills and practices"}
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-wrap gap-2">
-                {skills[tab].map((skill) => (
-                  <Badge 
-                    key={skill.name} 
-                    variant="secondary"
-                    className="transition-all duration-300 hover:scale-105 dark:bg-purple-700 dark:text-white bg-blue-100 text-blue-800 flex items-center"
-                  >
-                    {skill.icon}
-                    {skill.name}
-                  </Badge>
-                ))}
-              </CardContent>
-            </Card>
-          </TabsContent>
-        ))}
-      </Tabs>
+      <Card className="mb-8 transition-all duration-300 hover:shadow-md dark:bg-gray-800">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold">Skills & Technologies</CardTitle>
+          <CardDescription>Technologies and tools I work with</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Tabs defaultValue="frontend" className="w-full">
+            <TabsList className="grid w-full grid-cols-3 lg:grid-cols-5 mb-4">
+              <TabsTrigger value="frontend">Frontend</TabsTrigger>
+              <TabsTrigger value="backend">Backend</TabsTrigger>
+              <TabsTrigger value="devops">DevOps</TabsTrigger>
+              <TabsTrigger value="testing">Testing</TabsTrigger>
+              <TabsTrigger value="tools">Tools</TabsTrigger>
+            </TabsList>
+            {Object.entries(technologies).map(([category, techs]) => (
+              <TabsContent key={category} value={category}>
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                  {techs.map((tech) => (
+                    <div key={tech.name} className="flex flex-col items-center justify-center p-4 rounded-lg bg-gray-100 dark:bg-gray-700 transition-all duration-300 hover:shadow-md">
+                      <tech.icon className={`text-4xl ${tech.color}`} />
+                      <span className="mt-2 text-sm font-medium text-center">{tech.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </TabsContent>
+            ))}
+          </Tabs>
+        </CardContent>
+      </Card>
 
       <Card className="mb-8 transition-all duration-300 hover:shadow-md dark:bg-gray-800">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold">Tools & Platforms</CardTitle>
-          <CardDescription>Software and platforms I use in my development workflow</CardDescription>
+          <CardTitle className="text-2xl font-bold">Featured Projects and Features</CardTitle>
+          <CardDescription>A selection of my recent work</CardDescription>
         </CardHeader>
-        <CardContent className="flex flex-wrap gap-2">
-          {tools.map((tool) => (
-            <Badge 
-              key={tool.name} 
-              variant="secondary"
-              className="transition-all duration-300 hover:scale-105 dark:bg-purple-700 dark:text-white bg-blue-100 text-blue-800 flex items-center"
-            >
-              {tool.icon}
-              {tool.name}
-            </Badge>
-          ))}
+        <CardContent>
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project, index) => (
+              <Card key={index} className="transition-all duration-300 hover:shadow-md dark:bg-gray-700">
+                <CardHeader>
+                  <CardTitle className="text-xl">{project.title}</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <p className="text-sm mb-4 dark:text-gray-300">{project.description}</p>
+                  <div className="flex flex-wrap gap-2">
+                    {project.technologies.map((tech, techIndex) => (
+                      <Badge key={techIndex} variant="outline" className="dark:bg-gray-600 dark:text-white">
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
         </CardContent>
       </Card>
 
@@ -170,19 +195,17 @@ export default function AboutPage() {
           <CardDescription>I'm always open to new opportunities and collaborations</CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleSubmit}>
-            <div className="grid w-full items-center gap-4">
-              <div className="flex flex-col space-y-1.5">
-                <Input id="name" placeholder="Your Name" required className="dark:bg-gray-700" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Input id="email" placeholder="Your Email" type="email" required className="dark:bg-gray-700" />
-              </div>
-              <div className="flex flex-col space-y-1.5">
-                <Textarea id="message" placeholder="Your Message" required className="dark:bg-gray-700" />
-              </div>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div className="flex flex-col space-y-1.5">
+              <Input id="name" placeholder="Your Name" required className="dark:bg-gray-700" />
             </div>
-            <CardFooter className="flex justify-between mt-4 px-0">
+            <div className="flex flex-col space-y-1.5">
+              <Input id="email" placeholder="Your Email" type="email" required className="dark:bg-gray-700" />
+            </div>
+            <div className="flex flex-col space-y-1.5">
+              <Textarea id="message" placeholder="Your Message" required className="dark:bg-gray-700" />
+            </div>
+            <div className="flex justify-between mt-4">
               <Button 
                 type="reset" 
                 variant="outline"
@@ -196,7 +219,7 @@ export default function AboutPage() {
               >
                 Send Message
               </Button>
-            </CardFooter>
+            </div>
           </form>
         </CardContent>
       </Card>
@@ -208,3 +231,4 @@ export default function AboutPage() {
     </div>
   )
 }
+

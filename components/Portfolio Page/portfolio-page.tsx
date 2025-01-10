@@ -10,7 +10,17 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from "@/components/ui/badge"
 
 const projects = [
-  {
+  
+    {
+      title: "RayDunn",
+      description: "Portfolio showcasing web development and design services.",
+      image: "/PNG Transparent Logo.png",
+      projectLink: "/portfolio/raydunn",
+      websiteLink: "https://raydunnsolutions.com",
+      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
+    },
+    {
+
     title: "Clean Slate",
     description: "Modern, responsive website for pressure washing services.",
     image: "/cleanslatelol-whiteBG.webp",
@@ -26,14 +36,7 @@ const projects = [
     websiteLink: "https://pristinecleansoftwash.com",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
-  {
-    title: "RayDunn",
-    description: "Portfolio showcasing web development and design services.",
-    image: "/PNG Transparent Logo.png",
-    projectLink: "/portfolio/raydunn",
-    websiteLink: "https://raydunnsolutions.com",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
-  },
+ 
   {
     title: "OutKast Industrial",
     description: "Website for industrial cleaning services.",
