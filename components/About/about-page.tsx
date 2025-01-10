@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from "react"
+import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -102,32 +103,38 @@ export default function AboutPage() {
           <p className="text-lg mb-6 leading-relaxed dark:text-gray-300">
             Web Developer with 2+ years of experience in crafting high-performance web applications and data-driven dashboards. Proficient in React, Next.js, TypeScript, and WordPress for front-end development, with strong back-end skills in Node.js, PHP, and MongoDB. Experienced in implementing server-side rendering, static site generation, and API development.
           </p>
-          <div className="flex justify-center sm:justify-start gap-4 mb-4">
-            <Button 
-              variant="outline" 
-              size="icon" 
-              className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-            >
-              <FaGithub className="h-5 w-5" />
-              <span className="sr-only">GitHub Profile</span>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="icon" 
-              className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-            >
-              <FaLinkedin className="h-5 w-5" />
-              <span className="sr-only">LinkedIn Profile</span>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="icon" 
-              className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-            >
-              <FaEnvelope className="h-5 w-5" />
-              <span className="sr-only">Email Contact</span>
-            </Button>
-          </div>
+          <div className="flex space-x-4">
+        <Link href="https://github.com/arayer143" target="_blank" rel="noopener noreferrer">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
+          >
+            <FaGithub className="h-5 w-5" />
+            <span className="sr-only">GitHub Profile</span>
+          </Button>
+        </Link>
+        <Link href="https://www.linkedin.com/in/alex-rayer/" target="_blank" rel="noopener noreferrer">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
+          >
+            <FaLinkedin className="h-5 w-5" />
+            <span className="sr-only">LinkedIn Profile</span>
+          </Button>
+        </Link>
+        <Link href="mailto:alexrayer7@gmail.com">
+          <Button 
+            variant="outline" 
+            size="icon" 
+            className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
+          >
+            <FaEnvelope className="h-5 w-5" />
+            <span className="sr-only">Email Contact</span>
+          </Button>
+        </Link>
+      </div>
         </CardContent>
       </Card>
 
