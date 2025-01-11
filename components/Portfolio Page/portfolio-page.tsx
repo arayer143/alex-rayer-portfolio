@@ -1,26 +1,24 @@
 "use client"
 
-import { useRef } from "react"
-import { motion, useInView } from "framer-motion"
+import { useEffect, useState, useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { motion, useInView } from "framer-motion"
 import { ArrowRight, Code, Paintbrush, Rocket, Server, Globe, ExternalLink, Zap, Database, Layout } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
 
 const projects = [
-  
-    {
-      title: "RayDunn",
-      description: "Portfolio showcasing web development and design services.",
-      image: "/PNG Transparent Logo.png",
-      projectLink: "/portfolio/raydunn",
-      websiteLink: "https://raydunnsolutions.com",
-      technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
-    },
-    {
-
+  {
+    title: "RayDunn",
+    description: "Portfolio showcasing web development and design services.",
+    image: "/PNG Transparent Logo.png",
+    projectLink: "/portfolio/raydunn",
+    websiteLink: "https://raydunnsolutions.com",
+    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
+  },
+  {
     title: "Clean Slate",
     description: "Modern, responsive website for pressure washing services.",
     image: "/cleanslatelol-whiteBG.webp",
@@ -36,7 +34,6 @@ const projects = [
     websiteLink: "https://pristinecleansoftwash.com",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
- 
   {
     title: "OutKast Industrial",
     description: "Website for industrial cleaning services.",
@@ -45,7 +42,6 @@ const projects = [
     websiteLink: "https://outkastindustrial.com",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
   },
-
   {
     title: "Jessie Boudreaux",
     description: "Turnkey WordPress solution for a social media company.",
@@ -70,11 +66,17 @@ const skills = [
 ]
 
 export default function PortfolioPage() {
+  const [shouldAnimate, setShouldAnimate] = useState(false)
   const projectsRef = useRef(null)
   const skillsRef = useRef(null)
   
   const projectsInView = useInView(projectsRef, { once: true, amount: 0.3 })
   const skillsInView = useInView(skillsRef, { once: true, amount: 0.3 })
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShouldAnimate(true), 100)
+    return () => clearTimeout(timer)
+  }, [])
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
@@ -87,7 +89,7 @@ export default function PortfolioPage() {
         <section ref={projectsRef} className="mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={shouldAnimate && projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Featured Projects</h2>
@@ -96,7 +98,7 @@ export default function PortfolioPage() {
                 <motion.div
                   key={project.title}
                   initial={{ opacity: 0, y: 20 }}
-                  animate={projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  animate={shouldAnimate && projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
                   transition={{ duration: 0.8, delay: index * 0.2 }}
                 >
                   <Card className="overflow-hidden h-full flex flex-col bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -111,6 +113,7 @@ export default function PortfolioPage() {
                           alt={`${project.title} project thumbnail`}
                           fill
                           style={{ objectFit: "cover" }}
+                          loading="lazy"
                         />
                       </motion.div>
                     </CardHeader>
@@ -166,16 +169,16 @@ export default function PortfolioPage() {
         <section ref={skillsRef} className="mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            animate={shouldAnimate && skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Skills & Expertise</h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
               {skills.map((skill, index) => (
                 <motion.div
                   key={skill.name}
                   initial={{ opacity: 0, scale: 0.8 }}
-                  animate={skillsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+                  animate={shouldAnimate && skillsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                 >
                   <Card className="overflow-hidden h-full flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 group">
