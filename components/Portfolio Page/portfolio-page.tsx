@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState, useRef } from "react"
+import { useRef } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { motion, useInView } from "framer-motion"
@@ -66,136 +66,112 @@ const skills = [
 ]
 
 export default function PortfolioPage() {
-  const [shouldAnimate, setShouldAnimate] = useState(false)
-  const projectsRef = useRef(null)
-  const skillsRef = useRef(null)
-  
-  const projectsInView = useInView(projectsRef, { once: true, amount: 0.3 })
-  const skillsInView = useInView(skillsRef, { once: true, amount: 0.3 })
 
-  useEffect(() => {
-    const timer = setTimeout(() => setShouldAnimate(true), 100)
-    return () => clearTimeout(timer)
-  }, [])
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-      <main className="container mx-auto px-4 py-16">
-        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100">
-          My Portfolio
-        </h1>
+      <main className="container mx-auto px-4 py-4 md:py-8">
+   
 
         {/* Projects Section */}
-        <section ref={projectsRef} className="mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={shouldAnimate && projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Featured Projects</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {projects.map((project, index) => (
-                <motion.div
-                  key={project.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={shouldAnimate && projectsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                  transition={{ duration: 0.8, delay: index * 0.2 }}
-                >
-                  <Card className="overflow-hidden h-full flex flex-col bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                    <CardHeader className="p-0">
-                      <motion.div 
-                        className="relative h-48 w-full"
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                      >
-                        <Image
-                          src={project.image}
-                          alt={`${project.title} project thumbnail`}
-                          fill
-                          style={{ objectFit: "cover" }}
-                          loading="lazy"
-                        />
-                      </motion.div>
-                    </CardHeader>
-                    <CardContent className="p-6 flex-grow">
-                      <CardTitle className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">
-                        {project.title}
-                      </CardTitle>
-                      <CardDescription className="text-gray-600 dark:text-gray-300 mb-4">
-                        {project.description}
-                      </CardDescription>
-                      <div className="flex flex-wrap gap-2 mb-4">
-                        {project.technologies.map((tech) => (
-                          <Badge key={tech} variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                            {tech}
-                          </Badge>
-                        ))}
-                      </div>
-                      <Link 
-                        href={project.websiteLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="text-blue-600 hover:text-blue-800 dark:text-purple-400 dark:hover:text-purple-300 inline-flex items-center"
-                      >
-                        Visit Website
-                        <ExternalLink className="ml-1 h-4 w-4" />
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Featured Projects</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {projects.map((project, index) => (
+              <motion.div
+                key={project.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+              >
+                <Card className="overflow-hidden h-full flex flex-col bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                  <CardHeader className="p-0">
+                    <motion.div 
+                      className="relative h-48 w-full"
+                      whileHover={{ scale: 1.05 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} project thumbnail`}
+                        fill
+                        style={{ objectFit: "cover" }}
+                        loading="lazy"
+                      />
+                    </motion.div>
+                  </CardHeader>
+                  <CardContent className="p-6 flex-grow">
+                    <CardTitle className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">
+                      {project.title}
+                    </CardTitle>
+                    <CardDescription className="text-gray-600 dark:text-gray-300 mb-4">
+                      {project.description}
+                    </CardDescription>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.map((tech) => (
+                        <Badge key={tech} variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
+                    <Link 
+                      href={project.websiteLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="text-blue-600 hover:text-blue-800 dark:text-purple-400 dark:hover:text-purple-300 inline-flex items-center"
+                    >
+                      Visit Website
+                      <ExternalLink className="ml-1 h-4 w-4" />
+                    </Link>
+                  </CardContent>
+                  <CardFooter className="p-6 pt-0">
+                    <Button asChild variant="outline" className="w-full">
+                      <Link href={project.projectLink}>
+                        <span className="flex items-center justify-center">
+                          Learn More
+                          <motion.span
+                            className="ml-2"
+                            initial={{ x: 0 }}
+                            whileHover={{ x: 5 }}
+                            transition={{ duration: 0.3 }}
+                          >
+                            <ArrowRight className="h-4 w-4" />
+                          </motion.span>
+                        </span>
                       </Link>
-                    </CardContent>
-                    <CardFooter className="p-6 pt-0">
-                      <Button asChild variant="outline" className="w-full">
-                        <Link href={project.projectLink}>
-                          <span className="flex items-center justify-center">
-                            Learn More
-                            <motion.span
-                              className="ml-2"
-                              initial={{ x: 0 }}
-                              whileHover={{ x: 5 }}
-                              transition={{ duration: 0.3 }}
-                            >
-                              <ArrowRight className="h-4 w-4" />
-                            </motion.span>
-                          </span>
-                        </Link>
-                      </Button>
-                    </CardFooter>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+                    </Button>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </section>
 
         {/* Skills Section */}
-        <section ref={skillsRef} className="mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={shouldAnimate && skillsInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Skills & Expertise</h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
-              {skills.map((skill, index) => (
-                <motion.div
-                  key={skill.name}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={shouldAnimate && skillsInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <Card className="overflow-hidden h-full flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 group">
-                    <div className={`w-16 h-16 rounded-full ${skill.color} flex items-center justify-center mb-4 text-white transition-transform duration-300 group-hover:scale-110`}>
-                      {skill.icon}
-                    </div>
-                    <CardTitle className="text-lg font-semibold text-center mb-2 text-gray-800 dark:text-gray-200">
-                      {skill.name}
-                    </CardTitle>
-                    <CardDescription className="text-sm text-center text-gray-600 dark:text-gray-400">
-                      {skill.category}
-                    </CardDescription>
-                  </Card>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Skills & Expertise</h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+            {skills.map((skill, index) => (
+              <motion.div
+                key={skill.name}
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: index * 0.05 }}
+              >
+                <Card className="overflow-hidden h-full flex flex-col items-center justify-center p-4 bg-white dark:bg-gray-800 shadow-md hover:shadow-lg transition-all duration-300 group">
+                  <div className={`w-16 h-16 rounded-full ${skill.color} flex items-center justify-center mb-4 text-white transition-transform duration-300 group-hover:scale-110`}>
+                    {skill.icon}
+                  </div>
+                  <CardTitle className="text-lg font-semibold text-center mb-2 text-gray-800 dark:text-gray-200">
+                    {skill.name}
+                  </CardTitle>
+                  <CardDescription className="text-sm text-center text-gray-600 dark:text-gray-400">
+                    {skill.category}
+                  </CardDescription>
+                </Card>
+              </motion.div>
+            ))}
+          </div>
         </section>
       </main>
     </div>
