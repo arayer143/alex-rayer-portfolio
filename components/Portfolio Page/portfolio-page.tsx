@@ -66,16 +66,22 @@ const skills = [
 ]
 
 export default function PortfolioPage() {
-
+  // const projectsRef = useRef(null)
+  // const skillsRef = useRef(null)
+  
+  // const projectsInView = useInView(projectsRef, { once: true, amount: 0.1 })
+  // const skillsInView = useInView(skillsRef, { once: true, amount: 0.1 })
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <main className="container mx-auto px-4 py-4 md:py-8">
-   
+        <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100">
+          My Portfolio
+        </h1>
 
         {/* Projects Section */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Featured Projects</h2>
+        <section className="mb-16 group">
+         
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <motion.div
@@ -177,3 +183,4 @@ export default function PortfolioPage() {
     </div>
   )
 }
+
