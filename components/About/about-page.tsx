@@ -196,45 +196,8 @@ export default function AboutPage() {
         </CardContent>
       </Card>
 
-      <Card className="transition-all duration-300 hover:shadow-lg dark:bg-gray-800">
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">Get in Touch</CardTitle>
-          <CardDescription>I'm always open to new opportunities and collaborations</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="flex flex-col space-y-1.5">
-              <Input id="name" placeholder="Your Name" required className="dark:bg-gray-700" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Input id="email" placeholder="Your Email" type="email" required className="dark:bg-gray-700" />
-            </div>
-            <div className="flex flex-col space-y-1.5">
-              <Textarea id="message" placeholder="Your Message" required className="dark:bg-gray-700" />
-            </div>
-            <div className="flex justify-between mt-4">
-              <Button 
-                type="reset" 
-                variant="outline"
-                className="transition-all duration-300 hover:scale-105 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-              >
-                Clear
-              </Button>
-              <Button 
-                type="submit"
-                className="transition-all duration-300 hover:scale-105 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-              >
-                Send Message
-              </Button>
-            </div>
-          </form>
-        </CardContent>
-      </Card>
-      {isFormSubmitted && (
-        <div className="fixed bottom-4 right-4 bg-green-500 text-white p-4 rounded-md shadow-lg animate-bounce">
-          Message sent successfully!
-        </div>
-      )}
+   
+    
     </div>
   )
 }
