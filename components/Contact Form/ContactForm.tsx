@@ -20,8 +20,9 @@ import {
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   email: z.string().email({ message: "Invalid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
+  company: z.string().optional(),
+  projectType: z.enum(['website', 'web-app', 'e-commerce', 'other']).optional(),
+  message: z.string(),
 })
 
 export function ContactForm() {
@@ -33,7 +34,8 @@ export function ContactForm() {
     defaultValues: {
       name: "",
       email: "",
-      subject: "",
+      company: "",
+      projectType: undefined,
       message: "",
     },
   })
@@ -41,7 +43,7 @@ export function ContactForm() {
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     setIsSubmitting(true)
     try {
-      const response = await fetch('https://formspree.io/f/YOUR_FORM_ID', {
+      const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -78,7 +80,7 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name</FormLabel>
+              <FormLabel>Name *</FormLabel>
               <FormControl>
                 <Input placeholder="John Doe" {...field} />
               </FormControl>
@@ -91,7 +93,7 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email</FormLabel>
+              <FormLabel>Email *</FormLabel>
               <FormControl>
                 <Input type="email" placeholder="john@example.com" {...field} />
               </FormControl>
@@ -101,12 +103,34 @@ export function ContactForm() {
         />
         <FormField
           control={form.control}
-          name="subject"
+          name="company"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Subject</FormLabel>
+              <FormLabel>Company (Optional)</FormLabel>
               <FormControl>
-                <Input placeholder="Project Inquiry" {...field} />
+                <Input placeholder="Your Company" {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <FormField
+          control={form.control}
+          name="projectType"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Project Type</FormLabel>
+              <FormControl>
+                <select
+                  {...field}
+                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                >
+                  <option value="">Select a project type</option>
+                  <option value="website">Website</option>
+                  <option value="web-app">Web Application</option>
+                  <option value="e-commerce">E-commerce</option>
+                  <option value="other">Other</option>
+                </select>
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -136,4 +160,3 @@ export function ContactForm() {
     </Form>
   )
 }
-
