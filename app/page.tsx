@@ -1,22 +1,21 @@
+import { Suspense } from 'react'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
-import Footer from "@/components/footer"
-import { ClientPortfolioSection, ClientContactSection } from './client-components'
 import LoadingSpinner from '@/components/LoadingSpinner'
 
 const HeroSection = dynamic(() => import("@/components/Home Page/Hero Section/HeroSection"), {
   loading: () => <LoadingSpinner />
 })
-
 const AboutMe = dynamic(() => import("@/components/Home Page/About Me/about-me"), {
   loading: () => <LoadingSpinner />
 })
-
 const PortfolioSection = dynamic(() => import("@/components/Home Page/Portfolio Section/portfolio-section"), {
   loading: () => <LoadingSpinner />
 })
-
-const ContactSection = dynamic(() => import("@/components/Contact Form/ContactSection").then(mod => mod.ContactSection), {
+const ContactSection = dynamic(() => import("@/components/Contact Form/ContactSection"), {
+  loading: () => <LoadingSpinner />
+})
+const Footer = dynamic(() => import("@/components/footer"), {
   loading: () => <LoadingSpinner />
 })
 
@@ -76,13 +75,24 @@ export default function Home() {
     <div className="flex-col min-h-screen">
       <main className="flex-grow">
         <section className="w-full bg-gray-100 dark:bg-gray-800">
-          <HeroSection />
-          <AboutMe />
-          <ClientPortfolioSection />
-          <ClientContactSection />
+          <Suspense fallback={<LoadingSpinner />}>
+            <HeroSection />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <AboutMe />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <PortfolioSection />
+          </Suspense>
+          <Suspense fallback={<LoadingSpinner />}>
+            <ContactSection />
+          </Suspense>
         </section>
       </main>
-      <Footer />
+      <Suspense fallback={<LoadingSpinner />}>
+        <Footer />
+      </Suspense>
     </div>
   )
 }
+

@@ -1,5 +1,5 @@
 
-import { ContactSection } from "@/components/Contact Form/ContactSection";
+import ContactSection from "@/components/Contact Form/ContactSection";
 import Footer from "@/components/footer";
 
 import Navbar from "@/components/navbar";

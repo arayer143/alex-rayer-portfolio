@@ -7,7 +7,8 @@ export const ClientPortfolioSection = dynamic(() => import("@/components/Home Pa
   ssr: false
 })
 
-export const ClientContactSection = dynamic(() => import("@/components/Contact Form/ContactSection").then(mod => mod.ContactSection), {
+
+export const ClientContactSection = dynamic(() => import("@/components/Contact Form/ContactSection"), {
   loading: () => <div className="animate-pulse bg-gray-200 h-64 w-full"></div>,
   ssr: false
 })

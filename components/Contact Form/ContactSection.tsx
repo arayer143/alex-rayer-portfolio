@@ -1,7 +1,8 @@
+import React from 'react'
 import { ContactForm } from './ContactForm'
 import { ContactInfo } from './ContactInfo'
 
-export function ContactSection() {
+const ContactSection: React.FC = () => {
   return (
     <section id="contact" className="py-16 bg-gray-50 dark:bg-gray-900">
       <div className="container mx-auto px-4">
@@ -19,3 +20,4 @@ export function ContactSection() {
   )
 }
 
+export default ContactSection
