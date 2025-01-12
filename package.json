@@ -48,6 +48,7 @@
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@next/bundle-analyzer": "^15.1.4",
     "@types/mongodb": "^4.0.6",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.16",

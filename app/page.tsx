@@ -1,9 +1,24 @@
 import { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Footer from "@/components/footer"
-import HeroSection from "@/components/Home Page/Hero Section/HeroSection"
-import AboutMe from "@/components/Home Page/About Me/about-me"
-import PortfolioSection from "@/components/Home Page/Portfolio Section/portfolio-section"
-import { ContactSection } from "@/components/Contact Form/ContactSection"
+import { ClientPortfolioSection, ClientContactSection } from './client-components'
+import LoadingSpinner from '@/components/LoadingSpinner'
+
+const HeroSection = dynamic(() => import("@/components/Home Page/Hero Section/HeroSection"), {
+  loading: () => <LoadingSpinner />
+})
+
+const AboutMe = dynamic(() => import("@/components/Home Page/About Me/about-me"), {
+  loading: () => <LoadingSpinner />
+})
+
+const PortfolioSection = dynamic(() => import("@/components/Home Page/Portfolio Section/portfolio-section"), {
+  loading: () => <LoadingSpinner />
+})
+
+const ContactSection = dynamic(() => import("@/components/Contact Form/ContactSection").then(mod => mod.ContactSection), {
+  loading: () => <LoadingSpinner />
+})
 
 export const metadata: Metadata = {
   title: 'Alex Rayer | Web Developer & Designer',
@@ -63,13 +78,11 @@ export default function Home() {
         <section className="w-full bg-gray-100 dark:bg-gray-800">
           <HeroSection />
           <AboutMe />
-          <PortfolioSection />
-          <ContactSection />
+          <ClientPortfolioSection />
+          <ClientContactSection />
         </section>
       </main>
       <Footer />
     </div>
   )
 }
-
-
