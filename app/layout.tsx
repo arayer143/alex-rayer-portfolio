@@ -3,7 +3,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/themeprovider'
 import Navbar from '@/components/navbar'
 import type { Metadata } from 'next'
-import GoogleAnalytics from '@/components/googleAnalytics'
+import GoogleAnalytics from '@/components/GoogleAnalytics'
 import 'prismjs/themes/prism-tomorrow.css'
 import { Suspense } from 'react'
 
