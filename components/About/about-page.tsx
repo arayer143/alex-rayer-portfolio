@@ -1,18 +1,15 @@
 'use client'
 
-import { useState } from "react"
 import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
 import { Badge } from "@/components/ui/badge"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa"
-import { FaReact, FaNodeJs, FaGithub as FaGithub2, FaAws, FaDocker } from 'react-icons/fa'
+import { FaReact, FaNodeJs, FaGithub as FaGithub2, FaAws } from 'react-icons/fa'
 import { 
-  SiNextdotjs, SiTypescript, SiJavascript, SiHtml5, SiCss3, 
+ SiTypescript, SiJavascript, SiHtml5, SiCss3, 
   SiTailwindcss, SiExpress, SiMongodb, SiGraphql,
   SiGit, SiFigma, SiPostman, SiGoogletagmanager,
   SiWordpress, SiPhp, SiVercel, SiNetlify,
@@ -41,7 +38,6 @@ const technologies = {
   ],
   testing: [
     { name: "Jest", icon: SiJest, color: "text-red-500 dark:text-red-400" },
-
   ],
   devops: [
     { name: "Git", icon: SiGit, color: "text-orange-600 dark:text-orange-400" },
@@ -60,8 +56,6 @@ const technologies = {
 }
 
 export default function AboutPage() {
-  const [isFormSubmitted, setIsFormSubmitted] = useState(false)
-
   const projects = [
     {
       title: "RayDunn Web Solutions",
@@ -79,12 +73,6 @@ export default function AboutPage() {
       technologies: ["Next.js", "React", "TypeScript", "Prisma ORM", "Google Analytics API", "Excel parsing"]
     }
   ]
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsFormSubmitted(true)
-    setTimeout(() => setIsFormSubmitted(false), 3000)
-  }
 
   return (
     <div className="container mx-auto px-4 py-8 transition-colors duration-300 dark:bg-gray-900">
@@ -104,37 +92,37 @@ export default function AboutPage() {
             Web Developer with 2+ years of experience in crafting high-performance web applications and data-driven dashboards. Proficient in React, Next.js, TypeScript, and WordPress for front-end development, with strong back-end skills in Node.js, PHP, and MongoDB. Experienced in implementing server-side rendering, static site generation, and API development.
           </p>
           <div className="flex space-x-4">
-        <Link href="https://github.com/arayer143" target="_blank" rel="noopener noreferrer">
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-          >
-            <FaGithub className="h-5 w-5" />
-            <span className="sr-only">GitHub Profile</span>
-          </Button>
-        </Link>
-        <Link href="https://www.linkedin.com/in/alex-rayer/" target="_blank" rel="noopener noreferrer">
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-          >
-            <FaLinkedin className="h-5 w-5" />
-            <span className="sr-only">LinkedIn Profile</span>
-          </Button>
-        </Link>
-        <Link href="mailto:alexrayer7@gmail.com">
-          <Button 
-            variant="outline" 
-            size="icon" 
-            className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
-          >
-            <FaEnvelope className="h-5 w-5" />
-            <span className="sr-only">Email Contact</span>
-          </Button>
-        </Link>
-      </div>
+            <Link href="https://github.com/arayer143" target="_blank" rel="noopener noreferrer">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
+              >
+                <FaGithub className="h-5 w-5" />
+                <span className="sr-only">GitHub Profile</span>
+              </Button>
+            </Link>
+            <Link href="https://www.linkedin.com/in/alex-rayer/" target="_blank" rel="noopener noreferrer">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
+              >
+                <FaLinkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn Profile</span>
+              </Button>
+            </Link>
+            <Link href="mailto:alexrayer7@gmail.com">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="transition-all duration-300 hover:scale-110 dark:bg-purple-700 dark:text-white dark:hover:bg-purple-600 bg-blue-500 text-white hover:bg-blue-600"
+              >
+                <FaEnvelope className="h-5 w-5" />
+                <span className="sr-only">Email Contact</span>
+              </Button>
+            </Link>
+          </div>
         </CardContent>
       </Card>
 
@@ -195,9 +183,6 @@ export default function AboutPage() {
           </div>
         </CardContent>
       </Card>
-
-   
-    
     </div>
   )
 }

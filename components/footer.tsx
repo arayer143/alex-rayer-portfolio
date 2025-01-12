@@ -2,7 +2,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
 import { Separator } from "@/components/ui/separator"
-import { Github, Twitter, Linkedin, ArrowRight, Mail } from 'lucide-react'
+import { Github, Linkedin, ArrowRight, Mail } from 'lucide-react'
 
 export default function Footer() {
   const latestPosts = [

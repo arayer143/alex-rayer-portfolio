@@ -38,8 +38,11 @@ const nextConfig = {
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name(module) {
-              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
-              return `npm.${packageName.replace('@', '')}`;
+              // Get the name of the package from the path
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+              return packageName 
+                ? `npm.${packageName[1].replace('@', '')}`
+                : 'npm.unknown';
             },
           },
         },
@@ -50,4 +53,3 @@ const nextConfig = {
 };
 
 export default withBundleAnalyzer(nextConfig);
-

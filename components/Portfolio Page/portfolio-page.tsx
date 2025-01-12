@@ -1,9 +1,9 @@
 "use client"
 
-import { useRef } from "react"
+
 import Image from "next/image"
 import Link from "next/link"
-import { motion, useInView } from "framer-motion"
+import { motion } from "framer-motion"
 import { ArrowRight, Code, Paintbrush, Rocket, Server, Globe, ExternalLink, Zap, Database, Layout } from 'lucide-react'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
