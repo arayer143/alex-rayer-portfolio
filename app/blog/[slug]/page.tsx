@@ -1,139 +1,57 @@
-'use client'
-
-import React, { useState, useEffect, useRef } from 'react'
-import { useTheme } from 'next-themes'
+import { Suspense } from 'react'
 import { notFound } from 'next/navigation'
-import Link from 'next/link'
-import ReactMarkdown from 'react-markdown'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, TagIcon, ArrowLeftIcon, Copy, Check } from 'lucide-react'
-import Navbar from '@/components/navbar'
-import { CommentToggle } from '@/components/comment-toggle'
-import { CommentSection } from '@/components/comment-section'
-import Prism from 'prismjs'
-import 'prismjs/components/prism-typescript'
-import 'prismjs/components/prism-bash'
-import 'prismjs/themes/prism-tomorrow.css'
-import blogPosts, { BlogPost } from '@/data/blogData'
+import BlogPostContent from './BlogPostContent'
+import { getBlogPost } from '@/lib/getBlogPost'
+import LoadingSpinner from '@/components/LoadingSpinner'
+import blogPosts from '@/data/blogData'
+import { Metadata } from 'next'
 
-export default function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
-  const [showComments, setShowComments] = useState(false)
-  const [post, setPost] = useState<BlogPost | null>(null)
-  const [copiedSnippet, setCopiedSnippet] = useState<string | null>(null)
-  const { theme } = useTheme()
-  const contentRef = useRef<HTMLDivElement>(null)
+export async function generateStaticParams() {
+  return Object.keys(blogPosts).map((slug) => ({
+    slug: slug,
+  }))
+}
 
-  const resolvedParams = React.use(params)
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params
+  const post = await getBlogPost(slug)
+  if (!post) return { title: 'Post Not Found' }
 
-  useEffect(() => {
-    const fetchedPost = blogPosts[resolvedParams.slug]
-    if (fetchedPost) {
-      setPost(fetchedPost)
-    } else {
-      notFound()
-    }
-  }, [resolvedParams.slug])
+  return {
+    title: post.title,
+    description: post.description,
+    openGraph: {
+      title: post.title,
+      description: post.description,
+      type: 'article',
+      publishedTime: post.date,
+      authors: ['Alex Rayer'],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: post.description,
+    },
+  }
+}
 
-  useEffect(() => {
-    if (post && contentRef.current) {
-      Prism.highlightAllUnder(contentRef.current)
-    }
-  }, [post])
+interface PageProps {
+  params: Promise<{ slug: string }>
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
+  const { slug } = await params
+  const post = await getBlogPost(slug)
 
   if (!post) {
-    return <div>Loading...</div>
-  }
-
-  const toggleComments = () => {
-    setShowComments(!showComments)
-  }
-
-  const copyToClipboard = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopiedSnippet(text)
-      setTimeout(() => setCopiedSnippet(null), 2000)
-    })
-  }
-
-  const renderContent = (content: string) => {
-    return (
-      <ReactMarkdown
-        components={{
-          code({node, className, children, ...props}) {
-            const match = /language-(\w+)/.exec(className || '')
-            return match ? (
-              <div className="relative mb-6">
-                <pre className="p-4 bg-gray-100 dark:bg-gray-800 rounded-lg overflow-x-auto">
-                  <code className={className} {...props}>
-                    {children}
-                  </code>
-                </pre>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  className="absolute top-2 right-2"
-                  onClick={() => copyToClipboard(String(children))}
-                >
-                  {copiedSnippet === String(children) ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-                </Button>
-              </div>
-            ) : (
-              <code className={className} {...props}>
-                {children}
-              </code>
-            )
-          },
-          p: ({children}) => <p className="mb-6 text-gray-700 dark:text-gray-300 leading-relaxed">{children}</p>,
-          ul: ({children}) => <ul className="list-disc list-inside mb-6 pl-4 space-y-2">{children}</ul>,
-          li: ({children}) => <li className="text-gray-700 dark:text-gray-300">{children}</li>,
-        }}
-      >
-        {content}
-      </ReactMarkdown>
-    )
+    notFound()
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <Navbar />
-      <Link href="/blog" className="flex items-center mb-8 text-sm font-medium text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100 transition-colors">
-        <ArrowLeftIcon className="w-4 h-4 mr-2" />
-        Back to all posts
-      </Link>
-      <Card className="mb-8 shadow-lg">
-        <CardHeader className="space-y-4">
-          <CardTitle className="text-4xl font-bold text-gray-900 dark:text-gray-100">{post.title}</CardTitle>
-          <CardDescription className="flex items-center space-x-2 text-gray-500 dark:text-gray-400">
-            <CalendarIcon className="w-4 h-4" />
-            <span>{post.date}</span>
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Badge variant="secondary" className="mb-6 text-sm font-medium">
-            <TagIcon className="w-4 h-4 mr-1" />
-            {post.category}
-          </Badge>
-          <div ref={contentRef} className="prose max-w-none dark:prose-invert">
-            {post.content && renderContent(post.content)}
-          </div>
-        </CardContent>
-        <CardFooter className="flex flex-col items-start pt-6 border-t border-gray-200 dark:border-gray-700">
-          <CommentToggle 
-            postId={post.slug}
-            isActive={showComments}
-            onToggle={toggleComments}
-          />
-        </CardFooter>
-      </Card>
-      {showComments && (
-        <Card className="mt-8 shadow-lg">
-          <CardContent>
-            <CommentSection postId={post.slug} />
-          </CardContent>
-        </Card>
-      )}
-    </div>
+    <Suspense fallback={<LoadingSpinner />}>
+      <BlogPostContent post={post} />
+    </Suspense>
   )
 }
+
+
