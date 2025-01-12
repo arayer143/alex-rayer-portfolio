@@ -5,6 +5,7 @@ import Navbar from '@/components/navbar'
 import type { Metadata } from 'next'
 import GoogleAnalytics from '@/components/googleAnalytics'
 import 'prismjs/themes/prism-tomorrow.css'
+import { Suspense } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -56,7 +57,9 @@ export default function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
-          <GoogleAnalytics />
+          <Suspense fallback={null}>
+            <GoogleAnalytics />
+          </Suspense>
         </ThemeProvider>
       </body>
     </html>
