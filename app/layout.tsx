@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { ThemeProvider } from '@/components/themeprovider'
 import Navbar from '@/components/navbar'
 import type { Metadata } from 'next'
+import GoogleAnalytics from '@/components/googleAnalytics'
 import 'prismjs/themes/prism-tomorrow.css'
 
 const inter = Inter({ subsets: ['latin'] })
@@ -55,6 +56,7 @@ export default function RootLayout({
           <main className="min-h-screen">
             {children}
           </main>
+          <GoogleAnalytics />
         </ThemeProvider>
       </body>
     </html>
