@@ -1,22 +1,23 @@
 import { Suspense } from 'react'
 import { Metadata } from 'next'
 import dynamic from 'next/dynamic'
-import LoadingSpinner from '@/components/LoadingSpinner'
+
+const LoadingSpinner = dynamic(() => import('@/components/LoadingSpinner'), { ssr: true })
 
 const HeroSection = dynamic(() => import("@/components/Home Page/Hero Section/HeroSection"), {
-  loading: () => <LoadingSpinner />
+  loading: () => <LoadingSpinner />,
 })
 const AboutMe = dynamic(() => import("@/components/Home Page/About Me/about-me"), {
-  loading: () => <LoadingSpinner />
+  loading: () => <LoadingSpinner />,
 })
 const PortfolioSection = dynamic(() => import("@/components/Home Page/Portfolio Section/portfolio-section"), {
-  loading: () => <LoadingSpinner />
+  loading: () => <LoadingSpinner />,
 })
 const ContactSection = dynamic(() => import("@/components/Contact Form/ContactSection"), {
-  loading: () => <LoadingSpinner />
+  loading: () => <LoadingSpinner />,
 })
 const Footer = dynamic(() => import("@/components/footer"), {
-  loading: () => <LoadingSpinner />
+  loading: () => <LoadingSpinner />,
 })
 
 export const metadata: Metadata = {
@@ -72,9 +73,9 @@ export const metadata: Metadata = {
 
 export default function Home() {
   return (
-    <div className="flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen">
       <main className="flex-grow">
-        <section className="w-full bg-gray-100 dark:bg-gray-800">
+        <section className="w-full bg-gradient-to-b from-gray-100 to-white dark:from-gray-800 dark:to-gray-900">
           <Suspense fallback={<LoadingSpinner />}>
             <HeroSection />
           </Suspense>
