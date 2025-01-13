@@ -34,8 +34,8 @@ export function SpaceBackground() {
 
   const stars = useMemo(() => {
     const newStars = []
-    for (let i = 0; i < 200; i++) {
-      const size = Math.random() * 3 + 0.5
+    for (let i = 0; i < 100; i++) {
+      const size = Math.random() * 2 + 0.5
       const top = `${Math.random() * 100}%`
       const left = `${Math.random() * 100}%`
       const delay = Math.random() * 5
@@ -58,7 +58,6 @@ export function SpaceBackground() {
           : 'bg-gradient-radial from-blue-200 via-blue-300 to-blue-400'
       }`} />
       {stars}
-      <div className="absolute inset-0 bg-[url('/images/nebula.png')] bg-cover bg-center opacity-20" />
     </div>
   )
 }
