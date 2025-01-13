@@ -70,6 +70,13 @@ export interface BlogPost {
       description: "Learn how to add Google tags to your website for analytics and marketing purposes, with a focus on implementation in Next.js projects.",
       category: "Web Development",
       date: "2024-03-25"
+    },
+    {
+      title: "Optimizing JavaScript Performance: Lessons from a Lighthouse Audit",
+      slug: "optimizing-javascript-performance",
+      description: "Explore strategies to enhance JavaScript execution time, reduce main thread work, and minimize unused JavaScript based on Lighthouse audit findings for improved website performance.",
+      category: "Web Performance",
+      date: "2024-03-26"
     }
   ]
   
