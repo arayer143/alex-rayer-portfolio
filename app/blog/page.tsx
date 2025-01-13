@@ -1,6 +1,6 @@
 import { Suspense } from 'react'
 import BlogIndexContent from './BlogIndexContent'
-import blogPosts from '@/data/blogData'
+import { getBlogPosts } from '@/lib/getBlogPost'
 import LoadingSpinner from '@/components/LoadingSpinner'
 
 export const metadata = {
@@ -8,11 +8,13 @@ export const metadata = {
   description: 'Explore articles on web development, React, Next.js, and more.',
 }
 
-export default function BlogIndexPage() {
-  const posts = Object.values(blogPosts)
+export default async function BlogIndexPage() {
+  const posts = await getBlogPosts()
+
   return (
     <Suspense fallback={<LoadingSpinner />}>
       <BlogIndexContent posts={posts} />
     </Suspense>
   )
 }
+

@@ -56,6 +56,20 @@ export interface BlogPost {
       description: "A detailed look at how I built a secure client portal using Next.js, Prisma, and NextAuth.js, integrated with Vercel for seamless deployment.",
       category: "Web Development",
       date: "2024-03-20"
+    },
+    {
+      title: "Next.js Rendering Techniques: A Comprehensive Guide",
+      slug: "nextjs-rendering-techniques",
+      description: "Explore the various rendering techniques in Next.js and learn when to use each for optimal performance and user experience.",
+      category: "Next.js",
+      date: "2024-03-20"
+    },
+  {
+      title: "Implementing Google Tags in Your Website: A Step-by-Step Guide",
+      slug: "implementing-google-tags",
+      description: "Learn how to add Google tags to your website for analytics and marketing purposes, with a focus on implementation in Next.js projects.",
+      category: "Web Development",
+      date: "2024-03-25"
     }
   ]
   

@@ -3,51 +3,15 @@
 import React, { useState } from 'react'
 import Link from 'next/link'
 import ReactMarkdown from 'react-markdown'
-import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
-import { tomorrow } from 'react-syntax-highlighter/dist/esm/styles/prism'
 import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+
 import { Badge } from "@/components/ui/badge"
-import { CalendarIcon, TagIcon, ArrowLeftIcon, Copy, Check } from 'lucide-react'
+import { CalendarIcon, TagIcon, ArrowLeftIcon } from 'lucide-react'
 import Navbar from '@/components/navbar'
 import { CommentToggle } from '@/components/comment-toggle'
 import { CommentSection } from '@/components/comment-section'
 import { BlogPost } from '@/data/blogData'
-
-const CodeBlock = ({ className, children }: { className?: string, children: React.ReactNode }) => {
-  const [copied, setCopied] = useState(false)
-  const match = /language-(\w+)/.exec(className || '')
-  const language = match ? match[1] : ''
-
-  const copyToClipboard = () => {
-    if (typeof children === 'string') {
-      navigator.clipboard.writeText(children).then(() => {
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-      })
-    }
-  }
-
-  return (
-    <div className="relative">
-      <SyntaxHighlighter
-        style={tomorrow}
-        language={language}
-        PreTag="div"
-      >
-        {String(children)}
-      </SyntaxHighlighter>
-      <Button
-        variant="outline"
-        size="sm"
-        className="absolute top-2 right-2"
-        onClick={copyToClipboard}
-      >
-        {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
-      </Button>
-    </div>
-  )
-}
+import CodeBlock from '@/components/CodeBlock'
 
 export default function BlogPostContent({ post }: { post: BlogPost }) {
   const [showComments, setShowComments] = useState(false)
@@ -76,14 +40,14 @@ export default function BlogPostContent({ post }: { post: BlogPost }) {
             <ReactMarkdown
               components={{
                 code: ({ className, children }) => <CodeBlock className={className}>{children}</CodeBlock>,
-                p: ({children}) => <p className="mb-4">{children}</p>,
-                h1: ({children}) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
-                h2: ({children}) => <h2 className="text-2xl font-bold mt-6 mb-3">{children}</h2>,
-                h3: ({children}) => <h3 className="text-xl font-bold mt-4 mb-2">{children}</h3>,
-                ul: ({children}) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
-                ol: ({children}) => <ol className="list-decimal pl-5 mb-4">{children}</ol>,
-                li: ({children}) => <li className="mb-1">{children}</li>,
-                blockquote: ({children}) => <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">{children}</blockquote>,
+                p: ({ children }) => <div className="mb-4">{children}</div>,
+                h1: ({ children }) => <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>,
+                h2: ({ children }) => <h2 className="text-2xl font-bold mt-6 mb-3">{children}</h2>,
+                h3: ({ children }) => <h3 className="text-xl font-bold mt-4 mb-2">{children}</h3>,
+                ul: ({ children }) => <ul className="list-disc pl-5 mb-4">{children}</ul>,
+                ol: ({ children }) => <ol className="list-decimal pl-5 mb-4">{children}</ol>,
+                li: ({ children }) => <li className="mb-1">{children}</li>,
+                blockquote: ({ children }) => <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">{children}</blockquote>,
               }}
             >
               {post.content}
