@@ -1,56 +1,10 @@
 "use client"
 
-
-import Image from "next/image"
-import Link from "next/link"
 import { motion } from "framer-motion"
-import { ArrowRight, Code, Paintbrush, Rocket, Server, Globe, ExternalLink, Zap, Database, Layout } from 'lucide-react'
-import { Button } from "@/components/ui/button"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-
-const projects = [
-  {
-    title: "RayDunn",
-    description: "Portfolio showcasing web development and design services.",
-    image: "/PNG Transparent Logo.webp",
-    projectLink: "/portfolio/raydunn",
-    websiteLink: "https://raydunnsolutions.com",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
-  },
-  {
-    title: "Clean Slate",
-    description: "Modern, responsive website for pressure washing services.",
-    image: "/cleanslatelol-whiteBG.webp",
-    projectLink: "/portfolio/clean-slate",
-    websiteLink: "https://cleanslatepressurewashingnola.com",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
-  },
-  {
-    title: "Pristine Clean",
-    description: "Sleek design for professional soft wash services.",
-    image: "/pristinecleanlogo.webp",
-    projectLink: "/portfolio/pristine-clean",
-    websiteLink: "https://pristinecleansoftwash.com",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
-  },
-  {
-    title: "OutKast Industrial",
-    description: "Website for industrial cleaning services.",
-    image: "/outkast-logo.webp",
-    projectLink: "/portfolio/outkast-industrial",
-    websiteLink: "https://outkastindustrial.com",
-    technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS"]
-  },
-  {
-    title: "Jessie Boudreaux",
-    description: "Turnkey WordPress solution for a social media company.",
-    image: "/jessie-boudreaux-logo.webp",
-    projectLink: "/portfolio/jessie-boudreaux",
-    websiteLink: "https://jessieboudreaux.com",
-    technologies: ["WordPress", "Custom Theme", "Responsive Design", "SEO Optimization"]
-  }
-]
+import { projectsData } from "@/data/projects"
+import { ProjectCard } from "../Home Page/Portfolio Section/ProjectCard"
+import { Card, CardDescription, CardTitle } from "@/components/ui/card"
+import { Code, Paintbrush, Rocket, Server, Globe, Zap, Database, Layout } from 'lucide-react'
 
 const skills = [
   { name: "React", icon: <Code className="w-6 h-6" />, category: "Frontend", color: "bg-blue-500" },
@@ -66,96 +20,33 @@ const skills = [
 ]
 
 export default function PortfolioPage() {
-  // const projectsRef = useRef(null)
-  // const skillsRef = useRef(null)
-  
-  // const projectsInView = useInView(projectsRef, { once: true, amount: 0.1 })
-  // const skillsInView = useInView(skillsRef, { once: true, amount: 0.1 })
-
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
-      <main className="container mx-auto px-4 py-4 md:py-8">
+      <main className="container mx-auto px-4 py-12 md:py-24">
         <h1 className="text-4xl md:text-5xl font-bold text-center mb-12 text-gray-800 dark:text-gray-100">
           My Portfolio
         </h1>
 
         {/* Projects Section */}
-        <section className="mb-16 group">
-         
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-800 dark:text-gray-100">
+            Featured Projects
+          </h2>
+          <p className="text-xl text-center text-gray-600 dark:text-gray-300 mb-12 max-w-2xl mx-auto">
+            Explore some of my recent projects, showcasing expertise in creating stunning and functional websites across various technologies.
+          </p>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <motion.div
-                key={project.title}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-              >
-                <Card className="overflow-hidden h-full flex flex-col bg-white dark:bg-gray-800 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <CardHeader className="p-0">
-                    <motion.div 
-                      className="relative h-48 w-full"
-                      whileHover={{ scale: 1.05 }}
-                      transition={{ duration: 0.3 }}
-                    >
-                      <Image
-                        src={project.image}
-                        alt={`${project.title} project thumbnail`}
-                        fill
-                        style={{ objectFit: "cover" }}
-                        loading="lazy"
-                      />
-                    </motion.div>
-                  </CardHeader>
-                  <CardContent className="p-6 flex-grow">
-                    <CardTitle className="text-2xl font-bold mb-2 text-gray-900 dark:text-gray-100">
-                      {project.title}
-                    </CardTitle>
-                    <CardDescription className="text-gray-600 dark:text-gray-300 mb-4">
-                      {project.description}
-                    </CardDescription>
-                    <div className="flex flex-wrap gap-2 mb-4">
-                      {project.technologies.map((tech) => (
-                        <Badge key={tech} variant="secondary" className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-100">
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-                    <Link 
-                      href={project.websiteLink} 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
-                      className="text-blue-600 hover:text-blue-800 dark:text-purple-400 dark:hover:text-purple-300 inline-flex items-center"
-                    >
-                      Visit Website
-                      <ExternalLink className="ml-1 h-4 w-4" />
-                    </Link>
-                  </CardContent>
-                  <CardFooter className="p-6 pt-0">
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href={project.projectLink}>
-                        <span className="flex items-center justify-center">
-                          Learn More
-                          <motion.span
-                            className="ml-2"
-                            initial={{ x: 0 }}
-                            whileHover={{ x: 5 }}
-                            transition={{ duration: 0.3 }}
-                          >
-                            <ArrowRight className="h-4 w-4" />
-                          </motion.span>
-                        </span>
-                      </Link>
-                    </Button>
-                  </CardFooter>
-                </Card>
-              </motion.div>
+            {Object.entries(projectsData).map(([key, project]) => (
+              <ProjectCard key={key} project={project} projectKey={key} />
             ))}
           </div>
         </section>
 
         {/* Skills Section */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-gray-800 dark:text-gray-100">Skills & Expertise</h2>
+          <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-center mb-8 text-gray-800 dark:text-gray-100">
+            Skills & Expertise
+          </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
             {skills.map((skill, index) => (
               <motion.div
@@ -183,4 +74,3 @@ export default function PortfolioPage() {
     </div>
   )
 }
-

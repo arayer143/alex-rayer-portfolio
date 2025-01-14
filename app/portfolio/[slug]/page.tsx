@@ -39,7 +39,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
             src={project.image}
             alt={`${project.title} project screenshot`}
             fill
-            style={{ objectFit: "cover" }}
+            style={{ objectFit: "contain" }}
             className="rounded-t-lg"
           />
         </CardHeader>
