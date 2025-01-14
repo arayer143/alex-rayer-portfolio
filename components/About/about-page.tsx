@@ -79,7 +79,7 @@ export default function AboutPage() {
       <Card className="mb-8 overflow-hidden transition-all duration-300 hover:shadow-lg dark:bg-gray-800">
         <CardHeader className="flex flex-col sm:flex-row items-center gap-4 bg-gradient-to-r from-blue-500 to-purple-600 text-white">
           <Avatar className="h-24 w-24 border-4 border-white shadow-lg">
-            <AvatarImage src="/alex-rayer.png" alt="Profile picture" />
+            <AvatarImage src="/alex-rayer.webp" alt="Profile picture" />
             <AvatarFallback>AR</AvatarFallback>
           </Avatar>
           <div className="text-center sm:text-left">

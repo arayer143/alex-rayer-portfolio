@@ -13,7 +13,7 @@ const projects = [
   {
     title: "RayDunn",
     description: "Portfolio showcasing web development and design services.",
-    image: "/PNG Transparent Logo.png",
+    image: "/PNG Transparent Logo.webp",
     projectLink: "/portfolio/raydunn",
     websiteLink: "https://raydunnsolutions.com",
     technologies: ["Next.js", "React", "TypeScript", "Tailwind CSS", "Framer Motion"]
