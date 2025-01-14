@@ -53,7 +53,15 @@ const config: Config = {
           '3': 'hsl(var(--chart-3))',
           '4': 'hsl(var(--chart-4))',
           '5': 'hsl(var(--chart-5))'
-        }
+        },
+        purple: {
+          100: '#e0d7ff',
+          200: '#c3b1ff',
+          300: '#a78bfa',
+          400: '#8b5cf6',
+          700: '#6d28d9',
+          800: '#5b21b6',
+        },
       },
       borderRadius: {
         lg: 'var(--radius)',

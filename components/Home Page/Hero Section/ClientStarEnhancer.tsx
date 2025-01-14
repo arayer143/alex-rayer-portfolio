@@ -1,9 +1,12 @@
 'use client'
 
 import React, { useEffect } from 'react'
+import { useTheme } from 'next-themes'
 import styles from './SpaceBackground.module.css'
 
 const ClientStarEnhancer: React.FC = () => {
+  const { theme, systemTheme } = useTheme()
+
   useEffect(() => {
     const stars = document.querySelectorAll(`.${styles.star}`)
     stars.forEach((star) => {
@@ -21,6 +24,12 @@ const ClientStarEnhancer: React.FC = () => {
       )
     })
   }, [])
+
+  useEffect(() => {
+    const currentTheme = theme === 'system' ? systemTheme : theme
+    document.body.classList.toggle('light', currentTheme === 'light')
+    document.body.classList.toggle('dark', currentTheme === 'dark')
+  }, [theme, systemTheme])
 
   return null
 }

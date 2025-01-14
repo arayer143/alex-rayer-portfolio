@@ -1,21 +1,37 @@
 .backgroundGradient {
-    background: radial-gradient(ellipse at center, #1a202c 0%, #0d1117 70%, #000000 100%);
-  }
-  
-  .star {
-    position: absolute;
-    background-color: white;
-    border-radius: 50%;
-  }
-  
-  @media (prefers-color-scheme: light) {
-    .backgroundGradient {
-      background: radial-gradient(ellipse at center, #e6f0ff 0%, #bfdbfe 70%, #93c5fd 100%);
-    }
-  
-    .star {
-      background-color: #4299E1;
-    }
-  }
-  
-  
+  background: radial-gradient(
+    ellipse at center,
+    var(--bg-gradient-start) 0%,
+    var(--bg-gradient-mid) 70%,
+    var(--bg-gradient-end) 100%
+  );
+  transition: background 0.3s ease;
+}
+
+.star {
+  position: absolute;
+  background-color: var(--star-color);
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+}
+
+:global(.light) .backgroundGradient {
+  --bg-gradient-start: #e6f0ff;
+  --bg-gradient-mid: #bfdbfe;
+  --bg-gradient-end: #93c5fd;
+}
+
+:global(.light) .star {
+  --star-color: #4299E1;
+}
+
+:global(.dark) .backgroundGradient {
+  --bg-gradient-start: #1a202c;
+  --bg-gradient-mid: #0d1117;
+  --bg-gradient-end: #000000;
+}
+
+:global(.dark) .star {
+  --star-color: #ffffff;
+}
+
