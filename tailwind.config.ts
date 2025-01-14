@@ -69,10 +69,19 @@ const config: Config = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
+        twinkle: {
+          '0%, 100%': { opacity: '1' },
+          '50%': { opacity: '0' },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        "twinkle-0": "twinkle 4s ease-in-out infinite",
+        "twinkle-1": "twinkle 6s ease-in-out infinite 0.5s",
+        "twinkle-2": "twinkle 5s ease-in-out infinite 1s",
+        "twinkle-3": "twinkle 7s ease-in-out infinite 1.5s",
+        "twinkle-4": "twinkle 8s ease-in-out infinite 2s",
       },
     },
   },
@@ -80,4 +89,3 @@ const config: Config = {
 };
 
 export default config;
-
