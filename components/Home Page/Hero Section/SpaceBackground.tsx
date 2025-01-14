@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useMemo } from 'react'
+import { useEffect, useRef, useState, useMemo } from 'react'
 import { motion, useAnimation } from 'framer-motion'
 import { useTheme } from 'next-themes'
 
@@ -61,4 +61,3 @@ export function SpaceBackground() {
     </div>
   )
 }
-

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
 import { useTheme } from 'next-themes'
 
@@ -19,13 +20,28 @@ export function HeroContent() {
 
   return (
     <div className="relative z-10 text-center px-4">
-      <h1 className="text-4xl md:text-6xl font-bold mb-4 text-gray-800 dark:text-white">
+      <motion.h1 
+        className="text-4xl md:text-6xl font-bold mb-4 text-gray-800 dark:text-white"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5 }}
+      >
         Alex Rayer
-      </h1>
-      <p className={`text-lg md:text-xl mb-6 ${isDark ? 'text-purple-300' : 'text-blue-700'}`}>
+      </motion.h1>
+      <motion.p 
+        className={`text-lg md:text-xl mb-6 ${isDark ? 'text-purple-300' : 'text-blue-700'}`}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+      >
         Web Developer & Designer
-      </p>
-      <div className="space-x-4">
+      </motion.p>
+      <motion.div 
+        className="space-x-4"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+      >
         <Link href="/portfolio">
           <Button 
             size="lg" 
@@ -43,7 +59,7 @@ export function HeroContent() {
             Contact Me
           </Button>
         </Link>
-      </div>
+      </motion.div>
     </div>
   )
 }

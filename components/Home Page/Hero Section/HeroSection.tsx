@@ -16,7 +16,6 @@ function LoadingFallback() {
 }
 
 export default function HeroSection() {
-
   return (
     <section className="relative h-[60vh] flex items-center justify-center overflow-hidden bg-background text-foreground">
       <Suspense fallback={<LoadingFallback />}>
