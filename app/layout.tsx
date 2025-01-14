@@ -1,15 +1,10 @@
 import './globals.css'
-import { Inter } from 'next/font/google'
+import '../components/Home Page/Hero Section/SpaceBackground.module.css'
+import { inter } from './fonts'
 import { ThemeProvider } from '@/components/themeprovider'
 import Navbar from '@/components/navbar'
 import Script from 'next/script'
 import { metadata } from './metadata'
-
-const inter = Inter({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-inter',
-})
 
 export { metadata }
 
@@ -20,15 +15,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning className={inter.variable}>
-      <head>
-        <link
-          rel="preload"
-          href="/fonts/inter-var-latin.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
-      </head>
       <body className="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
         <ThemeProvider
           attribute="class"
@@ -59,4 +45,3 @@ export default function RootLayout({
     </html>
   )
 }
-
