@@ -80,11 +80,15 @@ export function ContactForm() {
           name="name"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Name *</FormLabel>
+              <FormLabel className="text-gray-700 dark:text-gray-300">Name *</FormLabel>
               <FormControl>
-                <Input placeholder="John Doe" {...field} />
+                <Input 
+                  placeholder="John Doe" 
+                  {...field} 
+                  className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500 dark:text-red-400" />
             </FormItem>
           )}
         />
@@ -93,11 +97,16 @@ export function ContactForm() {
           name="email"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Email *</FormLabel>
+              <FormLabel className="text-gray-700 dark:text-gray-300">Email *</FormLabel>
               <FormControl>
-                <Input type="email" placeholder="john@example.com" {...field} />
+                <Input 
+                  type="email" 
+                  placeholder="john@example.com" 
+                  {...field} 
+                  className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500 dark:text-red-400" />
             </FormItem>
           )}
         />
@@ -106,11 +115,15 @@ export function ContactForm() {
           name="company"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Company (Optional)</FormLabel>
+              <FormLabel className="text-gray-700 dark:text-gray-300">Company (Optional)</FormLabel>
               <FormControl>
-                <Input placeholder="Your Company" {...field} />
+                <Input 
+                  placeholder="Your Company" 
+                  {...field} 
+                  className="bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+                />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500 dark:text-red-400" />
             </FormItem>
           )}
         />
@@ -119,11 +132,11 @@ export function ContactForm() {
           name="projectType"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Project Type</FormLabel>
+              <FormLabel className="text-gray-700 dark:text-gray-300">Project Type</FormLabel>
               <FormControl>
                 <select
                   {...field}
-                  className="w-full p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  className="w-full p-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 dark:focus:ring-purple-500 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                 >
                   <option value="">Select a project type</option>
                   <option value="website">Website</option>
@@ -132,7 +145,7 @@ export function ContactForm() {
                   <option value="other">Other</option>
                 </select>
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500 dark:text-red-400" />
             </FormItem>
           )}
         />
@@ -141,22 +154,27 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Message</FormLabel>
+              <FormLabel className="text-gray-700 dark:text-gray-300">Message</FormLabel>
               <FormControl>
                 <Textarea 
                   placeholder="Tell me about your project or inquiry" 
-                  className="min-h-[120px]"
+                  className="min-h-[120px] bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
                   {...field} 
                 />
               </FormControl>
-              <FormMessage />
+              <FormMessage className="text-red-500 dark:text-red-400" />
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full" disabled={isSubmitting}>
+        <Button 
+          type="submit" 
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white dark:bg-purple-600 dark:hover:bg-purple-700" 
+          disabled={isSubmitting}
+        >
           {isSubmitting ? "Sending..." : "Send Message"}
         </Button>
       </form>
     </Form>
   )
 }
+
